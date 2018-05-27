@@ -1,0 +1,105 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/node_modules/react-viro/components/ViroSkyBox.js";
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  var _react = _require(_dependencyMap[1], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _resolveAssetSource = _require(_dependencyMap[2], "react-native/Libraries/Image/resolveAssetSource");
+
+  var _resolveAssetSource2 = _interopRequireDefault(_resolveAssetSource);
+
+  var _normalizeColor = _require(_dependencyMap[3], "react-native/Libraries/StyleSheet/normalizeColor");
+
+  var _normalizeColor2 = _interopRequireDefault(_normalizeColor);
+
+  var _propTypes = _require(_dependencyMap[4], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var NativeModules = _require(_dependencyMap[0], 'react-native').NativeModules;
+
+  var createReactClass = _require(_dependencyMap[5], 'create-react-class');
+
+  var CubeMapPropType = _require(_dependencyMap[6], './Material/CubeMapPropType');
+
+  var ColorPropType = _require(_dependencyMap[0], 'react-native').ColorPropType;
+
+  var ViroSkybox = createReactClass({
+    displayName: "ViroSkybox",
+    propTypes: _extends({}, _reactNative.View.propTypes, {
+      source: CubeMapPropType,
+      color: ColorPropType,
+      format: _propTypes2.default.oneOf(['RGBA8', 'RGB565']),
+      onLoadStart: _propTypes2.default.func,
+      onLoadEnd: _propTypes2.default.func
+    }),
+    _onLoadStart: function _onLoadStart(event) {
+      this.props.onLoadStart && this.props.onLoadStart(event);
+    },
+    _onLoadEnd: function _onLoadEnd(event) {
+      this.props.onLoadEnd && this.props.onLoadEnd(event);
+    },
+    setNativeProps: function setNativeProps(nativeProps) {
+      this._component.setNativeProps(nativeProps);
+    },
+    render: function render() {
+      var _this = this;
+
+      if (this.props.src) {
+        console.error('The <ViroSkybox> component takes a `source` property rather than `src`.');
+      }
+
+      if (this.props.onGaze) {
+        console.error('The <Viro360Photo> component does not take on an `onGaze` property. Pass the `onGaze` prop to <ViroScene> instead.');
+      }
+
+      if (this.props.onTap) {
+        console.error('The <Viro360Photo> component does not take on an `onTap` property. Pass the `onTap` prop to <ViroScene> instead.');
+      }
+
+      var skyboxDict = {};
+
+      var nativeProps = _extends({}, this.props);
+
+      if (this.props.source !== undefined) {
+        for (var key in this.props.source) {
+          var s = (0, _resolveAssetSource2.default)(this.props.source[key]);
+          skyboxDict[key] = s;
+        }
+
+        nativeProps.source = skyboxDict;
+      }
+
+      nativeProps.onViroSkyBoxLoadStart = this._onLoadStart;
+      nativeProps.onViroSkyBoxLoadEnd = this._onLoadEnd;
+      nativeProps.color = this.props.color;
+
+      nativeProps.ref = function (component) {
+        _this._component = component;
+      };
+
+      return _react2.default.createElement(VRTSkybox, _extends({}, nativeProps, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 104
+        }
+      }));
+    }
+  });
+  var VRTSkybox = (0, _reactNative.requireNativeComponent)('VRTSkybox', ViroSkybox, {
+    nativeOnly: {
+      onViroSkyBoxLoadStart: true,
+      onViroSkyBoxLoadEnd: true
+    }
+  });
+  module.exports = ViroSkybox;
+});

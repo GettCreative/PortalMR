@@ -1,0 +1,272 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/node_modules/react-viro/components/ViroPortal.js";
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  var _react = _require(_dependencyMap[1], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _propTypes = _require(_dependencyMap[2], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var NativeModules = _require(_dependencyMap[0], 'react-native').NativeModules;
+
+  var createReactClass = _require(_dependencyMap[3], 'create-react-class');
+
+  var ViroPortal = createReactClass({
+    displayName: "ViroPortal",
+    propTypes: _extends({}, _reactNative.View.propTypes, {
+      position: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      scale: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      rotation: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      scalePivot: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      rotationPivot: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      animation: _propTypes2.default.shape({
+        name: _propTypes2.default.string,
+        delay: _propTypes2.default.number,
+        loop: _propTypes2.default.bool,
+        onStart: _propTypes2.default.func,
+        onFinish: _propTypes2.default.func,
+        run: _propTypes2.default.bool,
+        interruptible: _propTypes2.default.bool
+      }),
+      transformBehaviors: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.string), _propTypes2.default.string]),
+      onTransformUpdate: _propTypes2.default.func,
+      visible: _propTypes2.default.bool,
+      opacity: _propTypes2.default.number,
+      lightReceivingBitMask: _propTypes2.default.number,
+      shadowCastingBitMask: _propTypes2.default.number,
+      ignoreEventHandling: _propTypes2.default.bool,
+      dragType: _propTypes2.default.oneOf(["FixedDistance", "FixedToWorld"]),
+      onHover: _propTypes2.default.func,
+      onClick: _propTypes2.default.func,
+      onClickState: _propTypes2.default.func,
+      onTouch: _propTypes2.default.func,
+      onScroll: _propTypes2.default.func,
+      onSwipe: _propTypes2.default.func,
+      onDrag: _propTypes2.default.func,
+      onPinch: _propTypes2.default.func,
+      onRotate: _propTypes2.default.func,
+      onFuse: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+        callback: _propTypes2.default.func.isRequired,
+        timeToFuse: _propTypes2.default.number
+      }), _propTypes2.default.func]),
+      physicsBody: _propTypes2.default.shape({
+        type: _propTypes2.default.oneOf(['Dynamic', 'Kinematic', 'Static']).isRequired,
+        mass: _propTypes2.default.number,
+        restitution: _propTypes2.default.number,
+        shape: _propTypes2.default.shape({
+          type: _propTypes2.default.oneOf(["Box", "Sphere", "Compound"]).isRequired,
+          params: _propTypes2.default.arrayOf(_propTypes2.default.number)
+        }).isRequired,
+        friction: _propTypes2.default.number,
+        useGravity: _propTypes2.default.bool,
+        enabled: _propTypes2.default.bool,
+        velocity: _propTypes2.default.arrayOf(_propTypes2.default.number),
+        force: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.shape({
+          value: _propTypes2.default.arrayOf(_propTypes2.default.number),
+          position: _propTypes2.default.arrayOf(_propTypes2.default.number)
+        })), _propTypes2.default.shape({
+          value: _propTypes2.default.arrayOf(_propTypes2.default.number),
+          position: _propTypes2.default.arrayOf(_propTypes2.default.number)
+        })]),
+        torque: _propTypes2.default.arrayOf(_propTypes2.default.number)
+      }),
+      viroTag: _propTypes2.default.string,
+      onCollision: _propTypes2.default.func
+    }),
+    _onHover: function _onHover(event) {
+      this.props.onHover && this.props.onHover(event.nativeEvent.isHovering, event.nativeEvent.position, event.nativeEvent.source);
+    },
+    _onClick: function _onClick(event) {
+      this.props.onClick && this.props.onClick(event.nativeEvent.position, event.nativeEvent.source);
+    },
+    _onClickState: function _onClickState(event) {
+      this.props.onClickState && this.props.onClickState(event.nativeEvent.clickState, event.nativeEvent.position, event.nativeEvent.source);
+      var CLICKED = 3;
+
+      if (event.nativeEvent.clickState == CLICKED) {
+        this._onClick(event);
+      }
+    },
+    _onTouch: function _onTouch(event) {
+      this.props.onTouch && this.props.onTouch(event.nativeEvent.touchState, event.nativeEvent.touchPos, event.nativeEvent.source);
+    },
+    _onScroll: function _onScroll(event) {
+      this.props.onScroll && this.props.onScroll(event.nativeEvent.scrollPos, event.nativeEvent.source);
+    },
+    _onSwipe: function _onSwipe(event) {
+      this.props.onSwipe && this.props.onSwipe(event.nativeEvent.swipeState, event.nativeEvent.source);
+    },
+    _onDrag: function _onDrag(event) {
+      this.props.onDrag && this.props.onDrag(event.nativeEvent.dragToPos, event.nativeEvent.source);
+    },
+    _onPinch: function _onPinch(event) {
+      this.props.onPinch && this.props.onPinch(event.nativeEvent.pinchState, event.nativeEvent.scaleFactor, event.nativeEvent.source);
+    },
+    _onRotate: function _onRotate(event) {
+      this.props.onRotate && this.props.onRotate(event.nativeEvent.rotateState, event.nativeEvent.rotationFactor, event.nativeEvent.source);
+    },
+    _onFuse: function _onFuse(event) {
+      if (this.props.onFuse) {
+        if (typeof this.props.onFuse === 'function') {
+          this.props.onFuse(event.nativeEvent.source);
+        } else if (this.props.onFuse != undefined && this.props.onFuse.callback != undefined) {
+          this.props.onFuse.callback(event.nativeEvent.source);
+        }
+      }
+    },
+    _onAnimationStart: function _onAnimationStart(event) {
+      this.props.animation && this.props.animation.onStart && this.props.animation.onStart();
+    },
+    _onAnimationFinish: function _onAnimationFinish(event) {
+      this.props.animation && this.props.animation.onFinish && this.props.animation.onFinish();
+    },
+    getTransformAsync: function getTransformAsync() {
+      return regeneratorRuntime.async(function getTransformAsync$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return regeneratorRuntime.awrap(NativeModules.VRTNodeModule.getNodeTransform((0, _reactNative.findNodeHandle)(this)));
+
+            case 2:
+              return _context.abrupt("return", _context.sent);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
+    },
+    getBoundingBoxAsync: function getBoundingBoxAsync() {
+      return regeneratorRuntime.async(function getBoundingBoxAsync$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return regeneratorRuntime.awrap(NativeModules.VRTNodeModule.getBoundingBox((0, _reactNative.findNodeHandle)(this)));
+
+            case 2:
+              return _context2.abrupt("return", _context2.sent);
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this);
+    },
+    applyImpulse: function applyImpulse(force, position) {
+      NativeModules.VRTNodeModule.applyImpulse((0, _reactNative.findNodeHandle)(this), force, position);
+    },
+    applyTorqueImpulse: function applyTorqueImpulse(torque) {
+      NativeModules.VRTNodeModule.applyTorqueImpulse((0, _reactNative.findNodeHandle)(this), torque);
+    },
+    setVelocity: function setVelocity(velocity) {
+      NativeModules.VRTNodeModule.setVelocity((0, _reactNative.findNodeHandle)(this), velocity);
+    },
+    _onCollision: function _onCollision(event) {
+      if (this.props.onCollision) {
+        this.props.onCollision(event.nativeEvent.viroTag, event.nativeEvent.collidedPoint, event.nativeEvent.collidedNormal);
+      }
+    },
+    _onNativeTransformUpdate: function _onNativeTransformUpdate(event) {
+      var position = event.nativeEvent.position;
+
+      if (this.props.onTransformUpdate) {
+        this.props.onTransformUpdate(position);
+      }
+    },
+    setNativeProps: function setNativeProps(nativeProps) {
+      this._component.setNativeProps(nativeProps);
+    },
+    render: function render() {
+      var _this = this;
+
+      var transformBehaviors = typeof this.props.transformBehaviors === 'string' ? new Array(this.props.transformBehaviors) : this.props.transformBehaviors;
+      var timeToFuse = undefined;
+
+      if (this.props.onFuse != undefined && typeof this.props.onFuse === 'object') {
+        timeToFuse = this.props.onFuse.timeToFuse;
+      }
+
+      var transformDelegate = this.props.onTransformUpdate != undefined ? this._onNativeTransformUpdate : undefined;
+      return _react2.default.createElement(VRTPortal, _extends({}, this.props, {
+        ref: function ref(component) {
+          _this._component = component;
+        },
+        onNativeTransformDelegateViro: transformDelegate,
+        hasTransformDelegate: this.props.onTransformUpdate != undefined,
+        transformBehaviors: transformBehaviors,
+        canHover: this.props.onHover != undefined,
+        canClick: this.props.onClick != undefined || this.props.onClickState != undefined,
+        canTouch: this.props.onTouch != undefined,
+        canScroll: this.props.onScroll != undefined,
+        canSwipe: this.props.onSwipe != undefined,
+        canDrag: this.props.onDrag != undefined,
+        canPinch: this.props.onPinch != undefined,
+        canRotate: this.props.onRotate != undefined,
+        canFuse: this.props.onFuse != undefined,
+        onHoverViro: this._onHover,
+        onClickViro: this._onClickState,
+        onTouchViro: this._onTouch,
+        onScrollViro: this._onScroll,
+        onSwipeViro: this._onSwipe,
+        onDragViro: this._onDrag,
+        onPinchViro: this._onPinch,
+        onRotateViro: this._onRotate,
+        onFuseViro: this._onFuse,
+        onAnimationStartViro: this._onAnimationStart,
+        onAnimationFinishViro: this._onAnimationFinish,
+        timeToFuse: timeToFuse,
+        canCollide: this.props.onCollision != undefined,
+        onCollisionViro: this._onCollision,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 209
+        }
+      }));
+    }
+  });
+  var VRTPortal = (0, _reactNative.requireNativeComponent)('VRTPortal', ViroPortal, {
+    nativeOnly: {
+      materials: [],
+      canHover: true,
+      canClick: true,
+      canTouch: true,
+      canScroll: true,
+      canSwipe: true,
+      canDrag: true,
+      canPinch: true,
+      canRotate: true,
+      canFuse: true,
+      onHoverViro: true,
+      onClickViro: true,
+      onTouchViro: true,
+      onScrollViro: true,
+      onSwipeViro: true,
+      onDragViro: true,
+      onPinchViro: true,
+      onRotateViro: true,
+      onFuseViro: true,
+      timeToFuse: true,
+      canCollide: true,
+      onCollisionViro: true,
+      onNativeTransformDelegateViro: true,
+      hasTransformDelegate: true,
+      onAnimationStartViro: true,
+      onAnimationFinishViro: true
+    }
+  });
+  module.exports = ViroPortal;
+});

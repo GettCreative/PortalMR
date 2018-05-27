@@ -1,0 +1,12 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = _require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+    "__packager_asset": true,
+    "httpServerLocation": "/assets/js/portal_archway/portal_archway",
+    "width": 2048,
+    "height": 2048,
+    "scales": [1],
+    "hash": "90def34e32cbc41ab17f9d545a47df98",
+    "name": "portal_archway_diffuse",
+    "type": "png"
+  });
+});

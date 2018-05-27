@@ -1,0 +1,399 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/node_modules/react-viro/components/AR/ViroARSceneNavigator.js";
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  var _react = _require(_dependencyMap[1], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _propTypes = _require(_dependencyMap[2], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var NativeModules = _require(_dependencyMap[0], 'react-native').NativeModules;
+
+  var createReactClass = _require(_dependencyMap[3], 'create-react-class');
+
+  var ViroARSceneNavigatorModule = _require(_dependencyMap[0], 'react-native').NativeModules.VRTARSceneNavigatorModule;
+
+  var mathRandomOffset = 0;
+  var ViroARSceneNavigator = createReactClass({
+    displayName: "ViroARSceneNavigator",
+    propTypes: _extends({}, _reactNative.View.propTypes, {
+      apiKey: _propTypes2.default.string.isRequired,
+      initialScene: _propTypes2.default.shape({
+        scene: _propTypes2.default.func.isRequired
+      }).isRequired,
+      worldAlignment: _propTypes2.default.oneOf(['Gravity', 'GravityAndHeading', 'Camera']),
+      autofocus: _propTypes2.default.bool,
+      videoQuality: _propTypes2.default.oneOf(['High', 'Low'])
+    }),
+    arSceneNavigator: undefined,
+    sceneNavigator: undefined,
+    getDefaultProps: function getDefaultProps() {
+      return {
+        viroAppProps: {}
+      };
+    },
+    UNSAFE_componentWillMount: function UNSAFE_componentWillMount() {
+      this.arSceneNavigator = {
+        push: this.push,
+        pop: this.pop,
+        popN: this.popN,
+        jump: this.jump,
+        replace: this.replace,
+        startVideoRecording: this._startVideoRecording,
+        stopVideoRecording: this._stopVideoRecording,
+        takeScreenshot: this._takeScreenshot,
+        resetARSession: this._resetARSession,
+        setWorldOrigin: this._setWorldOrigin
+      };
+      this.sceneNavigator = {
+        push: this.push,
+        pop: this.pop,
+        popN: this.popN,
+        jump: this.jump,
+        replace: this.replace,
+        startVideoRecording: this._startVideoRecording,
+        stopVideoRecording: this._stopVideoRecording,
+        takeScreenshot: this._takeScreenshot,
+        resetARSession: this._resetARSession,
+        setWorldOrigin: this._setWorldOrigin
+      };
+    },
+    getInitialState: function getInitialState() {
+      var initialSceneTag = this.props.initialSceneKey;
+
+      if (initialSceneTag == null) {
+        initialSceneTag = this.getRandomTag();
+      }
+
+      var scene = {
+        sceneClass: this.props.initialScene,
+        tag: initialSceneTag,
+        referenceCount: 1
+      };
+      var sceneDict = {};
+      sceneDict[scene.tag] = scene;
+      return {
+        sceneDictionary: sceneDict,
+        sceneHistory: [scene.tag],
+        currentSceneIndex: 0
+      };
+    },
+    getRandomTag: function getRandomTag() {
+      var randomTag = Math.random() + mathRandomOffset;
+      mathRandomOffset++;
+      return randomTag.toString();
+    },
+    push: function push(param1, param2) {
+      var sceneKey = undefined;
+      var scene = undefined;
+
+      if (typeof param1 == 'string') {
+        sceneKey = param1;
+        scene = param2;
+      } else {
+        scene = param1;
+      }
+
+      if (scene == undefined && sceneKey == undefined) {
+        console.log("ERROR: pushing requires either the scene tag, or both the tag and scene.");
+        return;
+      } else if (scene == undefined && sceneKey != undefined && !(sceneKey in this.state.sceneDictionary)) {
+        console.log("ERROR: Cannot push with a new sceneKey with no associated scene.");
+        return;
+      }
+
+      if (sceneKey == undefined || typeof sceneKey == 'string' && sceneKey.trim().length <= 0) {
+        sceneKey = this.getRandomTag();
+      }
+
+      this.incrementSceneReference(scene, sceneKey, false);
+      this.addToHistory(sceneKey);
+    },
+    replace: function replace(param1, param2) {
+      var sceneKey = undefined;
+      var scene = undefined;
+
+      if (typeof param1 == 'string') {
+        sceneKey = param1;
+        scene = param2;
+      } else {
+        scene = param1;
+      }
+
+      if (scene == undefined && sceneKey == undefined) {
+        console.log("ERROR: replacing requires either the scene tag, or both the tag and scene.");
+        return;
+      } else if (scene == undefined && sceneKey != undefined && !(sceneKey in this.state.sceneDictionary)) {
+        console.log("ERROR: Cannot replace with a new sceneKey with no associated scene.");
+        return;
+      }
+
+      if (sceneKey == undefined || typeof sceneKey == 'string' && sceneKey.trim().length <= 0) {
+        sceneKey = this.getRandomTag();
+      }
+
+      this.decrementReferenceForLastNScenes(1);
+      this.popHistoryByN(1);
+      this.incrementSceneReference(scene, sceneKey, false);
+      this.addToHistory(sceneKey);
+    },
+    jump: function jump(param1, param2) {
+      var sceneKey = undefined;
+      var scene = undefined;
+
+      if (typeof param1 == 'string') {
+        sceneKey = param1;
+        scene = param2;
+      } else {
+        scene = param1;
+      }
+
+      if (scene == undefined && sceneKey == undefined) {
+        console.log("ERROR: jumping requires either the scene tag, or both the tag and scene.");
+        return;
+      } else if (scene == undefined && sceneKey != undefined && !(sceneKey in this.state.sceneDictionary)) {
+        console.log("ERROR: Cannot jump with a new sceneKey with no associated scene.");
+        return;
+      }
+
+      if (sceneKey == undefined || typeof sceneKey == 'string' && sceneKey.trim().length <= 0) {
+        sceneKey = this.getRandomTag();
+      }
+
+      this.incrementSceneReference(scene, sceneKey, true);
+      this.reorderHistory(sceneKey);
+    },
+    pop: function pop() {
+      this.popN(1);
+    },
+    popN: function popN(n) {
+      if (n === 0) {
+        return;
+      }
+
+      if (this.state.sceneHistory.length - n <= 0) {
+        console.log("WARN: Attempted to pop the root scene in ViroARSceneNavigator!");
+        return;
+      }
+
+      this.decrementReferenceForLastNScenes(n);
+      this.popHistoryByN(n);
+    },
+    incrementSceneReference: function incrementSceneReference(scene, scenekey, limitOne) {
+      var currentSceneDictionary = this.state.sceneDictionary;
+
+      if (!(scenekey in currentSceneDictionary)) {
+        var newScene = {
+          sceneClass: scene,
+          tag: scenekey,
+          referenceCount: 0
+        };
+        currentSceneDictionary[scenekey] = newScene;
+      }
+
+      var currentScene = currentSceneDictionary[scenekey];
+
+      if (currentScene == null || currentScene == "undefined") {
+        console.log("ERROR: No scene found for: " + sceneKey);
+        return;
+      }
+
+      if (limitOne && currentScene.referenceCount < 1 || !limitOne) {
+        currentScene.referenceCount++;
+      }
+
+      currentSceneDictionary[scenekey] = currentScene;
+      this.setState({
+        sceneDictionary: currentSceneDictionary
+      });
+    },
+    decrementReferenceForLastNScenes: function decrementReferenceForLastNScenes(n) {
+      var sceneHistory = this.state.sceneHistory;
+      var sceneDictionary = this.state.sceneDictionary;
+
+      for (var i = 1; i <= n; i++) {
+        var sceneTag = sceneHistory[sceneHistory.length - i];
+        var scene = sceneDictionary[sceneTag];
+        scene.referenceCount--;
+
+        if (scene.referenceCount <= 0) {
+          delete sceneDictionary[sceneTag];
+        } else {
+          sceneDictionary[sceneTag] = scene;
+        }
+      }
+
+      this.setState({
+        sceneDictionary: sceneDictionary
+      });
+    },
+    addToHistory: function addToHistory(sceneKey) {
+      var updatedHistory = this.state.sceneHistory.concat([sceneKey]);
+      var currentIndex = this.getSceneIndex(sceneKey);
+      this.setState({
+        currentSceneIndex: currentIndex,
+        sceneHistory: updatedHistory
+      });
+    },
+    reorderHistory: function reorderHistory(sceneKey) {
+      var sceneHistory = this.state.sceneHistory;
+
+      for (var i = sceneHistory.length - 1; i >= 0; i--) {
+        if (sceneKey == sceneHistory[i]) {
+          sceneHistory.splice(i, 1);
+          break;
+        }
+      }
+
+      var updatedHistory = sceneHistory.concat([sceneKey]);
+      var currentIndex = this.getSceneIndex(sceneKey);
+      this.setState({
+        currentSceneIndex: currentIndex,
+        sceneHistory: updatedHistory
+      });
+    },
+    popHistoryByN: function popHistoryByN(n) {
+      var sceneHistory = this.state.sceneHistory;
+      sceneHistory.splice(sceneHistory.length - n, n);
+      var currentIndex = this.getSceneIndex(sceneHistory[sceneHistory.length - 1]);
+      this.setState({
+        currentSceneIndex: currentIndex,
+        sceneHistory: sceneHistory
+      });
+    },
+    getSceneIndex: function getSceneIndex(sceneTag) {
+      var sceneDictionary = this.state.sceneDictionary;
+      var i = 0;
+
+      for (var sceneKey in sceneDictionary) {
+        if (sceneTag == sceneDictionary[sceneKey].tag) {
+          return i;
+        }
+
+        i++;
+      }
+
+      return -1;
+    },
+    _startVideoRecording: function _startVideoRecording(fileName, saveToCameraRoll, onError) {
+      ViroARSceneNavigatorModule.startVideoRecording((0, _reactNative.findNodeHandle)(this), fileName, saveToCameraRoll, onError);
+    },
+    _stopVideoRecording: function _stopVideoRecording() {
+      return regeneratorRuntime.async(function _stopVideoRecording$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return regeneratorRuntime.awrap(ViroARSceneNavigatorModule.stopVideoRecording((0, _reactNative.findNodeHandle)(this)));
+
+            case 2:
+              return _context.abrupt("return", _context.sent);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
+    },
+    _takeScreenshot: function _takeScreenshot(fileName, saveToCameraRoll) {
+      return regeneratorRuntime.async(function _takeScreenshot$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return regeneratorRuntime.awrap(ViroARSceneNavigatorModule.takeScreenshot((0, _reactNative.findNodeHandle)(this), fileName, saveToCameraRoll));
+
+            case 2:
+              return _context2.abrupt("return", _context2.sent);
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this);
+    },
+    _resetARSession: function _resetARSession(resetTracking, removeAnchors) {
+      ViroARSceneNavigatorModule.resetARSession((0, _reactNative.findNodeHandle)(this), resetTracking, removeAnchors);
+    },
+    _setWorldOrigin: function _setWorldOrigin(worldOrigin) {
+      ViroARSceneNavigatorModule.setWorldOrigin((0, _reactNative.findNodeHandle)(this), worldOrigin);
+    },
+    _renderSceneStackItems: function _renderSceneStackItems() {
+      var views = [];
+      var i = 0;
+      var sceneDictionary = this.state.sceneDictionary;
+
+      for (var scene in sceneDictionary) {
+        var Component = sceneDictionary[scene].sceneClass.scene;
+        var props = sceneDictionary[scene].sceneClass.passProps;
+        views.push(_react2.default.createElement(Component, _extends({
+          key: 'scene' + i,
+          sceneNavigator: this.sceneNavigator
+        }, props, {
+          arSceneNavigator: this.arSceneNavigator
+        }, props, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 443
+          }
+        })));
+        i++;
+      }
+
+      return views;
+    },
+    render: function render() {
+      var _this = this;
+
+      var items = this._renderSceneStackItems();
+
+      this.arSceneNavigator.viroAppProps = this.props.viroAppProps;
+      this.sceneNavigator.viroAppProps = this.props.viroAppProps;
+      delete this.arSceneNavigator.viroAppProps.rootTag;
+      delete this.sceneNavigator.viroAppProps.rootTag;
+      return _react2.default.createElement(
+        VRTARSceneNavigator,
+        _extends({
+          ref: function ref(component) {
+            _this._component = component;
+          }
+        }, this.props, {
+          currentSceneIndex: this.state.currentSceneIndex,
+          style: (this.props.style, styles.container),
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 463
+          }
+        }),
+        items
+      );
+    }
+  });
+
+  var styles = _reactNative.StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
+    }
+  });
+
+  var VRTARSceneNavigator = (0, _reactNative.requireNativeComponent)('VRTARSceneNavigator', ViroARSceneNavigator, {
+    nativeOnly: {
+      currentSceneIndex: true
+    }
+  });
+  module.exports = ViroARSceneNavigator;
+});

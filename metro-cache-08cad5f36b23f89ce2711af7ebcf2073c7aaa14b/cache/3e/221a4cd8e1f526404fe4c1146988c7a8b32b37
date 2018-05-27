@@ -1,0 +1,360 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'user strict';
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/node_modules/react-viro/components/ViroButton.js";
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  var _react = _require(_dependencyMap[1], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _resolveAssetSource = _require(_dependencyMap[2], "react-native/Libraries/Image/resolveAssetSource");
+
+  var _resolveAssetSource2 = _interopRequireDefault(_resolveAssetSource);
+
+  var _propTypes = _require(_dependencyMap[3], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var ViroPropTypes = _require(_dependencyMap[4], './Styles/ViroPropTypes');
+
+  var createReactClass = _require(_dependencyMap[5], 'create-react-class');
+
+  var StyleSheetPropType = _require(_dependencyMap[6], 'react-native/Libraries/StyleSheet/StyleSheetPropType');
+
+  var stylePropType = StyleSheetPropType(ViroPropTypes);
+
+  var ViroNode = _require(_dependencyMap[7], './ViroNode');
+
+  var ViroImage = _require(_dependencyMap[8], './ViroImage');
+
+  var ViroAnimatedComponent = _require(_dependencyMap[9], './ViroAnimatedComponent');
+
+  var ViroAnimations = _require(_dependencyMap[10], './Animation/ViroAnimations');
+
+  var BTN_TYPE_HOVER = 'hovering';
+  var BTN_TYPE_NORMAL = 'normal';
+  var BTN_TYPE_CLICKED = 'clicked';
+  var ViroButton = createReactClass({
+    displayName: "ViroButton",
+    propTypes: _extends({}, _reactNative.View.propTypes, {
+      source: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+        uri: _propTypes2.default.string
+      }), _propTypes2.default.number]).isRequired,
+      hoverSource: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+        uri: _propTypes2.default.string
+      }), _propTypes2.default.number]),
+      clickSource: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+        uri: _propTypes2.default.string
+      }), _propTypes2.default.number]),
+      tapSource: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+        uri: _propTypes2.default.string
+      }), _propTypes2.default.number]),
+      gazeSource: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+        uri: _propTypes2.default.string
+      }), _propTypes2.default.number]),
+      position: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      scale: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      rotation: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      scalePivot: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      rotationPivot: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      materials: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.string), _propTypes2.default.string]),
+      animation: _propTypes2.default.shape({
+        name: _propTypes2.default.string,
+        delay: _propTypes2.default.number,
+        loop: _propTypes2.default.bool,
+        onStart: _propTypes2.default.func,
+        onFinish: _propTypes2.default.func,
+        run: _propTypes2.default.bool,
+        interruptible: _propTypes2.default.bool
+      }),
+      transformBehaviors: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.string), _propTypes2.default.string]),
+      onTransformUpdate: _propTypes2.default.func,
+      visible: _propTypes2.default.bool,
+      opacity: _propTypes2.default.number,
+      height: _propTypes2.default.number,
+      width: _propTypes2.default.number,
+      style: stylePropType,
+      dragType: _propTypes2.default.oneOf(["FixedDistance", "FixedToWorld"]),
+      ignoreEventHandling: _propTypes2.default.bool,
+      onHover: _propTypes2.default.func,
+      onClick: _propTypes2.default.func,
+      onClickState: _propTypes2.default.func,
+      onTouch: _propTypes2.default.func,
+      onScroll: _propTypes2.default.func,
+      onSwipe: _propTypes2.default.func,
+      onDrag: _propTypes2.default.func,
+      onPinch: _propTypes2.default.func,
+      onRotate: _propTypes2.default.func,
+      onFuse: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+        callback: _propTypes2.default.func.isRequired,
+        timeToFuse: _propTypes2.default.number
+      }), _propTypes2.default.func]),
+      physicsBody: _propTypes2.default.shape({
+        type: _propTypes2.default.oneOf(['Dynamic', 'Kinematic', 'Static']).isRequired,
+        mass: _propTypes2.default.number,
+        restitution: _propTypes2.default.number,
+        shape: _propTypes2.default.shape({
+          type: _propTypes2.default.oneOf(["Box", "Sphere", "Compound"]).isRequired,
+          params: _propTypes2.default.arrayOf(_propTypes2.default.number)
+        }).isRequired,
+        friction: _propTypes2.default.number,
+        useGravity: _propTypes2.default.bool,
+        enabled: _propTypes2.default.bool,
+        velocity: _propTypes2.default.arrayOf(_propTypes2.default.number),
+        force: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.shape({
+          value: _propTypes2.default.arrayOf(_propTypes2.default.number),
+          position: _propTypes2.default.arrayOf(_propTypes2.default.number)
+        })), _propTypes2.default.shape({
+          value: _propTypes2.default.arrayOf(_propTypes2.default.number),
+          position: _propTypes2.default.arrayOf(_propTypes2.default.number)
+        })]),
+        torque: _propTypes2.default.arrayOf(_propTypes2.default.number)
+      }),
+      viroTag: _propTypes2.default.string,
+      onCollision: _propTypes2.default.func
+    }),
+    applyImpulse: function applyImpulse(force, atPosition) {
+      this._component.applyImpulse(force, atPosition);
+    },
+    applyTorqueImpulse: function applyTorqueImpulse(torque) {
+      this._component.applyTorqueImpulse(torque);
+    },
+    setVelocity: function setVelocity(velocity) {
+      this._component.setVelocity(velocity);
+    },
+    _onAnimationStart: function _onAnimationStart(event) {
+      this.props.animation && this.props.animation.onStart && this.props.animation.onStart();
+    },
+    _onAnimationFinish: function _onAnimationFinish(event) {
+      this.props.animation && this.props.animation.onFinish && this.props.animation.onFinish();
+    },
+    getTransformAsync: function getTransformAsync() {
+      return regeneratorRuntime.async(function getTransformAsync$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return regeneratorRuntime.awrap(this._component.getTransformAsync());
+
+            case 2:
+              return _context.abrupt("return", _context.sent);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
+    },
+    getBoundingBoxAsync: function getBoundingBoxAsync() {
+      return regeneratorRuntime.async(function getBoundingBoxAsync$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return regeneratorRuntime.awrap(this._component.getBoundingBoxAsync());
+
+            case 2:
+              return _context2.abrupt("return", _context2.sent);
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this);
+    },
+    getInitialState: function getInitialState() {
+      return {
+        buttonType: BTN_TYPE_NORMAL
+      };
+    },
+    render: function render() {
+      var _this = this;
+
+      if (this.props.material) {
+        console.error('The <ViroButton> component takes a `materials` property rather than `material`.');
+      }
+
+      if (this.props.gazeSource) {
+        console.warn("[Viro] ViroButton.gazeSource has been DEPRECATED. Please use hoverSource instead.");
+      }
+
+      if (this.props.tapSource) {
+        console.warn("[Viro] ViroButton.tapSource has been DEPRECATED. Please use clickSource instead.");
+      }
+
+      if (this.props.visible === undefined) {
+        this.props.visible = true;
+      }
+
+      var normalSrcVisible;
+      var hoverSrcVisible;
+      var clickSrcVisible;
+      var hoverSource = this.props.hoverSource || this.props.gazeSource;
+      var clickSource = this.props.clickSource || this.props.tapSource;
+      var buttonScale = this.props.scale || [1, 1, 1];
+
+      switch (this.state.buttonType) {
+        case BTN_TYPE_HOVER:
+          hoverSrcVisible = this.props.visible && true;
+          clickSrcVisible = false;
+          normalSrcVisible = false;
+          break;
+
+        case BTN_TYPE_CLICKED:
+          buttonScale = [0.9 * buttonScale[0], 0.9 * buttonScale[1], 0.9 * buttonScale[2]];
+          hoverSrcVisible = false;
+          clickSrcVisible = this.props.visible && true;
+          normalSrcVisible = false;
+          break;
+
+        default:
+          normalSrcVisible = this.props.visible && true;
+          hoverSrcVisible = false;
+          clickSrcVisible = false;
+      }
+
+      return _react2.default.createElement(
+        ViroNode,
+        {
+          ref: function ref(component) {
+            _this._component = component;
+          },
+          physicsBody: this.props.physicsBody,
+          position: this.props.position,
+          onTransformUpdate: this.props.onTransformUpdate,
+          onClickState: this.props.onClickState,
+          onTouch: this.props.onTouch,
+          onScroll: this.props.onScroll,
+          onSwipe: this.props.onSwipe,
+          onHover: this._onButtonHover,
+          onClick: this._onButtonClicked,
+          onDrag: this.props.onDrag,
+          onPinch: this.props.onPinch,
+          onRotate: this.props.onRotate,
+          onCollision: this.props.onCollision,
+          viroTag: this.props.viroTag,
+          onFuse: this.props.onFuse,
+          animation: this.props.animation,
+          onAnimationStartViro: this._onAnimationStart,
+          onAnimationFinishViro: this._onAnimationFinish,
+          ignoreEventHandling: this.props.ignoreEventHandling,
+          dragType: this.props.dragType,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 248
+          }
+        },
+        _react2.default.createElement(ViroImage, {
+          source: this.props.source,
+          rotation: this.props.rotation,
+          rotationPivot: this.props.rotationPivot,
+          scale: buttonScale,
+          scalePivot: this.props.scalePivot,
+          opacity: this.props.opacity,
+          transformBehaviors: this.props.transformBehaviors,
+          visible: normalSrcVisible,
+          height: this.props.height,
+          width: this.props.width,
+          materials: this.props.materials,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 271
+          }
+        }),
+        _react2.default.createElement(ViroImage, {
+          source: hoverSource ? hoverSource : this.props.source,
+          rotation: this.props.rotation,
+          rotationPivot: this.props.rotationPivot,
+          scale: buttonScale,
+          scalePivot: this.props.scalePivot,
+          opacity: this.props.opacity,
+          transformBehaviors: this.props.transformBehaviors,
+          visible: hoverSrcVisible,
+          height: this.props.height,
+          width: this.props.width,
+          materials: this.props.materials,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 284
+          }
+        }),
+        _react2.default.createElement(
+          ViroAnimatedComponent,
+          {
+            animation: "clickAnimation",
+            run: clickSrcVisible,
+            onFinish: this._onAnimationFinished,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 297
+            }
+          },
+          _react2.default.createElement(ViroImage, {
+            source: clickSource ? clickSource : hoverSource ? hoverSource : this.props.source,
+            rotation: this.props.rotation,
+            scale: buttonScale,
+            opacity: this.props.opacity,
+            transformBehaviors: this.props.transformBehaviors,
+            visible: clickSrcVisible,
+            height: this.props.height,
+            width: this.props.width,
+            materials: this.props.materials,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 302
+            }
+          })
+        )
+      );
+    },
+    _onButtonHover: function _onButtonHover(isHovering, source) {
+      if (isHovering) {
+        this.setState({
+          buttonType: BTN_TYPE_HOVER
+        });
+
+        if (this.props.onHover) {
+          this.props.onHover(isHovering, source);
+        }
+      } else {
+        this.setState({
+          buttonType: BTN_TYPE_NORMAL
+        });
+      }
+    },
+    _onButtonClicked: function _onButtonClicked(source) {
+      this.setState({
+        buttonType: BTN_TYPE_CLICKED
+      });
+
+      if (this.props.onClick) {
+        this.props.onClick(source);
+      }
+    },
+    _onAnimationFinished: function _onAnimationFinished() {
+      this.setState({
+        buttonType: BTN_TYPE_HOVER
+      });
+    }
+  });
+  ViroAnimations.registerAnimations({
+    clickAnimation: {
+      properties: {
+        scaleX: "/=0.9",
+        scaleY: "/=0.9",
+        scaleZ: "/=0.9"
+      },
+      easing: "Bounce",
+      duration: 500
+    }
+  });
+  module.exports = ViroButton;
+});

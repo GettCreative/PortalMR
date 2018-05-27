@@ -1,0 +1,10 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = _require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+    "__packager_asset": true,
+    "httpServerLocation": "/assets/js/portal_res/portal_ship",
+    "scales": [1],
+    "hash": "42c111a3696dbe98dd988494b813869a",
+    "name": "portal_ship",
+    "type": "vrx"
+  });
+});

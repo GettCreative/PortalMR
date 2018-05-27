@@ -1,0 +1,72 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.polarToCartesian = polarToCartesian;
+    exports.polarToCartesianActual = polarToCartesianActual;
+    exports.isARSupportedOnDevice = isARSupportedOnDevice;
+
+    var _reactNative = _require(_dependencyMap[0], "react-native");
+
+    function polarToCartesian(polarcoords) {
+        var cartesianCoords = [];
+        var radius = polarcoords[0];
+        var theta = polarcoords[1];
+        var phi = polarcoords[2];
+        var x = Math.abs(radius * Math.cos(phi * Math.PI / 180)) * Math.sin(theta * Math.PI / 180);
+        var y = radius * Math.sin(phi * Math.PI / 180);
+        var z = -(Math.abs(radius * Math.cos(phi * Math.PI / 180)) * Math.cos(theta * Math.PI / 180));
+        cartesianCoords.push(x);
+        cartesianCoords.push(y);
+        cartesianCoords.push(z);
+        return cartesianCoords;
+    }
+
+    ;
+
+    function polarToCartesianActual(polarcoords) {
+        var cartesianCoords = [];
+        var radius = polarcoords[0];
+        var theta = polarcoords[1];
+        var phi = polarcoords[2];
+        var x = Math.abs(radius * Math.sin(phi * Math.PI / 180)) * Math.cos(theta * Math.PI / 180);
+        var y = radius * Math.cos(phi * Math.PI / 180);
+        var z = Math.abs(radius * Math.sin(phi * Math.PI / 180)) * Math.sin(theta * Math.PI / 180);
+        cartesianCoords.push(x);
+        cartesianCoords.push(y);
+        cartesianCoords.push(z);
+        return cartesianCoords;
+    }
+
+    ;
+
+    function isARSupportedOnDevice(notSupportedCallback, supportedCallback) {
+        if (_reactNative.Platform.OS == 'ios') {
+            _reactNative.NativeModules.VRTARUtils.isARSupported(function (error, result) {
+                if (result.isARSupported == true) {
+                    {
+                        supportedCallback();
+                    }
+                } else {
+                    {
+                        notSupportedCallback();
+                    }
+                }
+            });
+        } else {
+            _reactNative.NativeModules.VRTARSceneNavigatorModule.isARSupportedOnDevice(function (result) {
+                if (result == true) {
+                    {
+                        supportedCallback();
+                    }
+                } else {
+                    {
+                        notSupportedCallback();
+                    }
+                }
+            });
+        }
+    }
+
+    ;
+});

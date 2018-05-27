@@ -1,0 +1,335 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/node_modules/react-viro/components/ViroParticleEmitter.js";
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  var _react = _require(_dependencyMap[1], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _resolveAssetSource = _require(_dependencyMap[2], "react-native/Libraries/Image/resolveAssetSource");
+
+  var _resolveAssetSource2 = _interopRequireDefault(_resolveAssetSource);
+
+  var _propTypes = _require(_dependencyMap[3], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var NativeModules = _require(_dependencyMap[0], 'react-native').NativeModules;
+
+  var createReactClass = _require(_dependencyMap[4], 'create-react-class');
+
+  var StyleSheet = _require(_dependencyMap[5], 'react-native/Libraries/StyleSheet/StyleSheet');
+
+  var ViroPropTypes = _require(_dependencyMap[6], './Styles/ViroPropTypes');
+
+  var StyleSheetPropType = _require(_dependencyMap[7], 'react-native/Libraries/StyleSheet/StyleSheetPropType');
+
+  var stylePropType = StyleSheetPropType(ViroPropTypes);
+
+  var ColorPropType = _require(_dependencyMap[0], 'react-native').ColorPropType;
+
+  var processColor = _require(_dependencyMap[0], 'react-native').processColor;
+
+  var ViroParticleEmitter = createReactClass({
+    displayName: "ViroParticleEmitter",
+    propTypes: _extends({}, _reactNative.View.propTypes, {
+      position: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      rotation: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      scale: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      scalePivot: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      rotationPivot: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      onTransformUpdate: _propTypes2.default.func,
+      visible: _propTypes2.default.bool,
+      viroTag: _propTypes2.default.string,
+      transformBehaviors: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.string), _propTypes2.default.string]),
+      duration: _propTypes2.default.number,
+      delay: _propTypes2.default.number,
+      loop: _propTypes2.default.bool,
+      run: _propTypes2.default.bool,
+      fixedToEmitter: _propTypes2.default.bool,
+      image: _propTypes2.default.shape({
+        source: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+          uri: _propTypes2.default.string
+        }), _propTypes2.default.number]).isRequired,
+        height: _propTypes2.default.number,
+        width: _propTypes2.default.number,
+        bloomThreshold: _propTypes2.default.number,
+        blendMode: _propTypes2.default.string
+      }).isRequired,
+      spawnBehavior: _propTypes2.default.shape({
+        emissionRatePerSecond: _propTypes2.default.arrayOf(_propTypes2.default.number),
+        emissionRatePerMeter: _propTypes2.default.arrayOf(_propTypes2.default.number),
+        particleLifetime: _propTypes2.default.arrayOf(_propTypes2.default.number),
+        maxParticles: _propTypes2.default.number,
+        emissionBurst: _propTypes2.default.arrayOf(_propTypes2.default.oneOfType([_propTypes2.default.shape({
+          time: _propTypes2.default.number,
+          min: _propTypes2.default.number,
+          max: _propTypes2.default.number,
+          cycles: _propTypes2.default.number,
+          cooldownPeriod: _propTypes2.default.number
+        }), _propTypes2.default.shape({
+          distance: _propTypes2.default.number,
+          min: _propTypes2.default.number,
+          max: _propTypes2.default.number,
+          cycles: _propTypes2.default.number,
+          cooldownDistance: _propTypes2.default.number
+        })])),
+        spawnVolume: _propTypes2.default.shape({
+          shape: _propTypes2.default.string,
+          params: _propTypes2.default.arrayOf(_propTypes2.default.number),
+          spawnOnSurface: _propTypes2.default.bool
+        })
+      }),
+      particleAppearance: _propTypes2.default.shape({
+        opacity: _propTypes2.default.shape({
+          initialRange: _propTypes2.default.arrayOf(_propTypes2.default.number),
+          factor: _propTypes2.default.oneOf(["Time", "Distance"]),
+          interpolation: _propTypes2.default.arrayOf(_propTypes2.default.shape({
+            interval: _propTypes2.default.arrayOf(_propTypes2.default.number),
+            endValue: _propTypes2.default.number
+          }))
+        }),
+        scale: _propTypes2.default.shape({
+          initialRange: _propTypes2.default.arrayOf(_propTypes2.default.arrayOf(_propTypes2.default.number)),
+          factor: _propTypes2.default.oneOf(["Time", "Distance"]),
+          interpolation: _propTypes2.default.arrayOf(_propTypes2.default.shape({
+            interval: _propTypes2.default.arrayOf(_propTypes2.default.number),
+            endValue: _propTypes2.default.arrayOf(_propTypes2.default.number)
+          }))
+        }),
+        rotation: _propTypes2.default.shape({
+          initialRange: _propTypes2.default.arrayOf(_propTypes2.default.number),
+          factor: _propTypes2.default.oneOf(["Time", "Distance"]),
+          interpolation: _propTypes2.default.arrayOf(_propTypes2.default.shape({
+            interval: _propTypes2.default.arrayOf(_propTypes2.default.number),
+            endValue: _propTypes2.default.number
+          }))
+        }),
+        color: _propTypes2.default.shape({
+          initialRange: _propTypes2.default.arrayOf(ColorPropType),
+          factor: _propTypes2.default.oneOf(["Time", "Distance"]),
+          interpolation: _propTypes2.default.arrayOf(_propTypes2.default.shape({
+            interval: _propTypes2.default.arrayOf(_propTypes2.default.number),
+            endValue: ColorPropType
+          }))
+        })
+      }),
+      particlePhysics: _propTypes2.default.shape({
+        velocity: _propTypes2.default.shape({
+          initialRange: _propTypes2.default.arrayOf(_propTypes2.default.arrayOf(_propTypes2.default.number))
+        }),
+        acceleration: _propTypes2.default.shape({
+          initialRange: _propTypes2.default.arrayOf(_propTypes2.default.arrayOf(_propTypes2.default.number))
+        }),
+        explosiveImpulse: _propTypes2.default.shape({
+          impulse: _propTypes2.default.number,
+          position: _propTypes2.default.arrayOf(_propTypes2.default.number),
+          decelerationPeriod: _propTypes2.default.number
+        })
+      })
+    }),
+    getInitialState: function getInitialState() {
+      return {
+        propsPositionState: this.props.position,
+        nativePositionState: undefined
+      };
+    },
+    getTransformAsync: function getTransformAsync() {
+      return regeneratorRuntime.async(function getTransformAsync$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return regeneratorRuntime.awrap(NativeModules.VRTNodeModule.getNodeTransform((0, _reactNative.findNodeHandle)(this)));
+
+            case 2:
+              return _context.abrupt("return", _context.sent);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
+    },
+    getBoundingBoxAsync: function getBoundingBoxAsync() {
+      return regeneratorRuntime.async(function getBoundingBoxAsync$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return regeneratorRuntime.awrap(NativeModules.VRTNodeModule.getBoundingBox((0, _reactNative.findNodeHandle)(this)));
+
+            case 2:
+              return _context2.abrupt("return", _context2.sent);
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this);
+    },
+    _onNativeTransformUpdate: function _onNativeTransformUpdate(event) {
+      var _this = this;
+
+      var position = event.nativeEvent.position;
+      this.setState({
+        nativePositionState: position
+      }, function () {
+        if (_this.props.onTransformUpdate) {
+          _this.props.onTransformUpdate(position);
+        }
+      });
+    },
+    componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+      if (nextProps.position != this.state.nativePositionState) {
+        var newPosition = [nextProps.position[0], nextProps.position[1], nextProps.position[2], Math.random()];
+        this.setState({
+          propsPositionState: newPosition
+        });
+      }
+    },
+    shouldComponentUpdate: function shouldComponentUpdate(nextProps, nextState) {
+      if (nextState.nativePositionState != this.state.nativePositionState) {
+        return false;
+      }
+
+      return true;
+    },
+    setNativeProps: function setNativeProps(nativeProps) {
+      this._component.setNativeProps(nativeProps);
+    },
+    render: function render() {
+      var _this2 = this;
+
+      var image = _extends({}, this.props.image);
+
+      if (image.source != undefined) {
+        image.source = (0, _resolveAssetSource2.default)(image.source);
+      }
+
+      var transformDelegate = this.props.onTransformUpdate != undefined ? this._onNativeTransformUpdate : undefined;
+
+      var nativeProps = _extends({}, this.props);
+
+      nativeProps.position = this.state.propsPositionState;
+      nativeProps.onNativeTransformDelegateViro = transformDelegate;
+      nativeProps.hasTransformDelegate = this.props.onTransformUpdate != undefined;
+      nativeProps.image = image;
+
+      if (this.props.particleAppearance && this.props.particleAppearance.color) {
+        var colorModifier = this.props.particleAppearance.color;
+
+        if (colorModifier.initialRange.length != 2) {
+          console.error('The <ViroParticleEmitter> component requires initial value of [min, max] when defining inital rotation property!');
+          return;
+        }
+
+        var minColorFinal = processColor(colorModifier.initialRange[0]);
+        var maxColorFinal = processColor(colorModifier.initialRange[1]);
+        var modifierFinal = [];
+        var interpolationLength = colorModifier.interpolation != undefined ? colorModifier.interpolation.length : 0;
+
+        for (var _i = 0; _i < interpolationLength; _i++) {
+          var processedColor = processColor(colorModifier.interpolation[_i].endValue);
+          var mod = {
+            interval: colorModifier.interpolation[_i].interval,
+            endValue: processedColor
+          };
+          modifierFinal.push(mod);
+        }
+
+        var newAppearanceColorMod = {
+          initialRange: [minColorFinal, maxColorFinal],
+          factor: colorModifier.factor,
+          interpolation: modifierFinal
+        };
+        nativeProps.particleAppearance.color = newAppearanceColorMod;
+      }
+
+      if (this.props.particleAppearance && this.props.particleAppearance.rotation) {
+        var rotMod = this.props.particleAppearance.rotation;
+
+        if (rotMod.initialRange.length != 2) {
+          console.error('The <ViroParticleEmitter> component requires initial value of [min, max] when defining inital rotation property!');
+        }
+
+        var minRotFinal = [0, 0, rotMod.initialRange[0] * Math.PI / 180];
+        var maxRotFinal = [0, 0, rotMod.initialRange[1] * Math.PI / 180];
+        var _modifierFinal = [];
+
+        var _interpolationLength = rotMod.interpolation != undefined ? rotMod.interpolation.length : 0;
+
+        for (var i = 0; i < _interpolationLength; i++) {
+          var processedRot = [0, 0, rotMod.interpolation[i].endValue * Math.PI / 180];
+          var _mod = {
+            interval: rotMod.interpolation[i].interval,
+            endValue: processedRot
+          };
+
+          _modifierFinal.push(_mod);
+        }
+
+        var newAppearanceRotMod = {
+          initialRange: [minRotFinal, maxRotFinal],
+          factor: rotMod.factor,
+          interpolation: _modifierFinal
+        };
+        nativeProps.particleAppearance.rotation = newAppearanceRotMod;
+      }
+
+      nativeProps.ref = function (component) {
+        _this2._component = component;
+      };
+
+      return _react2.default.createElement(VRTParticleEmitter, _extends({}, nativeProps, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 274
+        }
+      }));
+    }
+  });
+  var VRTParticleEmitter = (0, _reactNative.requireNativeComponent)('VRTParticleEmitter', ViroParticleEmitter, {
+    nativeOnly: {
+      onNativeTransformDelegateViro: true,
+      hasTransformDelegate: true,
+      canHover: true,
+      canClick: true,
+      canTouch: true,
+      canScroll: true,
+      canSwipe: true,
+      canDrag: true,
+      canPinch: true,
+      canRotate: true,
+      canFuse: true,
+      canCollide: true,
+      onHoverViro: true,
+      onClickViro: true,
+      onTouchViro: true,
+      onScrollViro: true,
+      onSwipeViro: true,
+      onDragViro: true,
+      onPinchViro: true,
+      onRotateViro: true,
+      onPlatformUpdateViro: true,
+      onFuseViro: true,
+      timeToFuse: true,
+      physicsBody: true,
+      onCollisionViro: true,
+      animation: true,
+      materials: true,
+      dragType: true,
+      ignoreEventHandling: true
+    }
+  });
+  module.exports = ViroParticleEmitter;
+});

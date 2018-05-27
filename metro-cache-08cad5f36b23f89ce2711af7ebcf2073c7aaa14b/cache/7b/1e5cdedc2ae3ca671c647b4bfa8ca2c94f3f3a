@@ -1,0 +1,12 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = _require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+    "__packager_asset": true,
+    "httpServerLocation": "/assets/node_modules/react-viro/components/Resources",
+    "width": 128,
+    "height": 128,
+    "scales": [1],
+    "hash": "2da6241b843004adaf6abaa66dbdd31a",
+    "name": "viro_blank",
+    "type": "png"
+  });
+});

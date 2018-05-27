@@ -1,0 +1,169 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/node_modules/react-viro/components/AR/ViroARPlaneSelector.js";
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  var _react = _require(_dependencyMap[1], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _propTypes = _require(_dependencyMap[2], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var createReactClass = _require(_dependencyMap[3], 'create-react-class');
+
+  var ViroMaterials = _require(_dependencyMap[4], '../Material/ViroMaterials');
+
+  var ViroARPlane = _require(_dependencyMap[5], './ViroARPlane');
+
+  var ViroQuad = _require(_dependencyMap[6], '../ViroQuad');
+
+  var ViroNode = _require(_dependencyMap[7], '../ViroNode');
+
+  var _maxPlanes = 15;
+  var _planePrefix = "ViroARPlaneSelector_Plane_";
+  var ViroARPlaneSelector = createReactClass({
+    displayName: "ViroARPlaneSelector",
+    propTypes: _extends({}, _reactNative.View.propTypes, {
+      maxPlanes: _propTypes2.default.number,
+      minHeight: _propTypes2.default.number,
+      minWidth: _propTypes2.default.number,
+      alignment: _propTypes2.default.oneOf(["Horizontal", "HorizontalUpward", "HorizontalDownward", "Vertical"]),
+      visible: _propTypes2.default.bool,
+      opacity: _propTypes2.default.number,
+      ignoreEventHandling: _propTypes2.default.bool,
+      dragType: _propTypes2.default.oneOf(["FixedDistance", "FixedToWorld"]),
+      onHover: _propTypes2.default.func,
+      onClick: _propTypes2.default.func,
+      onClickState: _propTypes2.default.func,
+      onTouch: _propTypes2.default.func,
+      onScroll: _propTypes2.default.func,
+      onSwipe: _propTypes2.default.func,
+      onDrag: _propTypes2.default.func,
+      onPinch: _propTypes2.default.func,
+      onRotate: _propTypes2.default.func,
+      onFuse: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+        callback: _propTypes2.default.func.isRequired,
+        timeToFuse: _propTypes2.default.number
+      }), _propTypes2.default.func]),
+      onCollision: _propTypes2.default.func,
+      viroTag: _propTypes2.default.string,
+      onAnchorFound: _propTypes2.default.func,
+      onAnchorUpdated: _propTypes2.default.func,
+      onAnchorRemoved: _propTypes2.default.func,
+      onPlaneSelected: _propTypes2.default.func
+    }),
+    getInitialState: function getInitialState() {
+      return {
+        selectedSurface: -1,
+        arPlaneSizes: []
+      };
+    },
+    render: function render() {
+      return _react2.default.createElement(
+        ViroNode,
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 78
+          }
+        },
+        this._getARPlanes()
+      );
+    },
+    _getARPlanes: function _getARPlanes() {
+      if (this.state.selectedSurface == -1) {
+        var arPlanes = [];
+        var numPlanes = this.props.maxPlanes || _maxPlanes;
+
+        for (var i = 0; i < numPlanes; i++) {
+          var arPlaneSize = this.state.arPlaneSizes[i];
+          var surfaceWidth = arPlaneSize ? arPlaneSize.width : 0;
+          var surfaceHeight = arPlaneSize ? arPlaneSize.height : 0;
+          var surfacePosition = arPlaneSize ? arPlaneSize.center : [0, 0, 0];
+          arPlanes.push(_react2.default.createElement(
+            ViroARPlane,
+            {
+              key: _planePrefix + i,
+              minWidth: this.props.minWidth,
+              minHeight: this.props.minHeight,
+              alignment: this.props.alignment,
+              onAnchorUpdated: this._onARPlaneUpdated(i),
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 94
+              }
+            },
+            _react2.default.createElement(ViroQuad, {
+              materials: "ViroARPlaneSelector_Translucent",
+              onClick: this._getOnClickSurface(i),
+              position: surfacePosition,
+              width: surfaceWidth,
+              height: surfaceHeight,
+              rotation: [-90, 0, 0],
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 99
+              }
+            })
+          ));
+        }
+
+        return arPlanes;
+      } else {
+        return _react2.default.createElement(ViroARPlane, _extends({
+          key: _planePrefix + this.state.selectedSurface
+        }, this.props, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 110
+          }
+        }));
+      }
+    },
+    _getOnClickSurface: function _getOnClickSurface(index) {
+      var _this = this;
+
+      return function () {
+        _this.setState({
+          selectedSurface: index
+        });
+
+        _this._onPlaneSelected();
+      };
+    },
+    _onARPlaneUpdated: function _onARPlaneUpdated(index) {
+      var _this2 = this;
+
+      return function (updateMap) {
+        _this2.state.arPlaneSizes[index] = updateMap;
+
+        _this2.setState({
+          arPlaneSizes: _this2.state.arPlaneSizes
+        });
+      };
+    },
+    _onPlaneSelected: function _onPlaneSelected() {
+      this.props.onPlaneSelected && this.props.onPlaneSelected();
+    },
+    reset: function reset() {
+      this.setState({
+        selectedSurface: -1
+      });
+    }
+  });
+  ViroMaterials.createMaterials({
+    ViroARPlaneSelector_Translucent: {
+      lightingModel: "Constant",
+      diffuseColor: "#88888888"
+    }
+  });
+  module.exports = ViroARPlaneSelector;
+});

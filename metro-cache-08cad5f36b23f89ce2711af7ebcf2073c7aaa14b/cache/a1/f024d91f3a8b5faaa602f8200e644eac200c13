@@ -1,0 +1,72 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/node_modules/react-viro/components/ViroDirectionalLight.js";
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  var _react = _require(_dependencyMap[1], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _normalizeColor = _require(_dependencyMap[2], "react-native/Libraries/StyleSheet/normalizeColor");
+
+  var _normalizeColor2 = _interopRequireDefault(_normalizeColor);
+
+  var _propTypes = _require(_dependencyMap[3], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var NativeModules = _require(_dependencyMap[0], 'react-native').NativeModules;
+
+  var createReactClass = _require(_dependencyMap[4], 'create-react-class');
+
+  var ColorPropType = _require(_dependencyMap[0], 'react-native').ColorPropType;
+
+  var ViroDirectionalLight = createReactClass({
+    displayName: "ViroDirectionalLight",
+    propTypes: _extends({}, _reactNative.View.propTypes, {
+      color: ColorPropType,
+      intensity: _propTypes2.default.number,
+      temperature: _propTypes2.default.number,
+      direction: _propTypes2.default.arrayOf(_propTypes2.default.number).isRequired,
+      influenceBitMask: _propTypes2.default.number,
+      castsShadow: _propTypes2.default.bool,
+      shadowOpacity: _propTypes2.default.number,
+      shadowOrthographicSize: _propTypes2.default.number,
+      shadowOrthographicPosition: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      shadowMapSize: _propTypes2.default.number,
+      shadowBias: _propTypes2.default.number,
+      shadowNearZ: _propTypes2.default.number,
+      shadowFarZ: _propTypes2.default.number
+    }),
+    setNativeProps: function setNativeProps(nativeProps) {
+      this._component.setNativeProps(nativeProps);
+    },
+    render: function render() {
+      var _this = this;
+
+      var nativeProps = _extends({}, this.props);
+
+      nativeProps.style = [this.props.style];
+      nativeProps.color = this.props.color;
+
+      nativeProps.ref = function (component) {
+        _this._component = component;
+      };
+
+      return _react2.default.createElement(VRTDirectionalLight, _extends({}, nativeProps, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 56
+        }
+      }));
+    }
+  });
+  var VRTDirectionalLight = (0, _reactNative.requireNativeComponent)('VRTDirectionalLight', ViroDirectionalLight);
+  module.exports = ViroDirectionalLight;
+});

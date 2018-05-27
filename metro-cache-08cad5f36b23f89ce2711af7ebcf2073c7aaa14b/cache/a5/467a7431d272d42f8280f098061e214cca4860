@@ -1,0 +1,12 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+   module.exports = _require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+      "__packager_asset": true,
+      "httpServerLocation": "/assets/node_modules/react-viro/components/Resources",
+      "width": 256,
+      "height": 256,
+      "scales": [1],
+      "hash": "fec294249a83c63898fc51ae314cee85",
+      "name": "viro_spinner_1",
+      "type": "png"
+   });
+});
