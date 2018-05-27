@@ -1,0 +1,45 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var _react = _require(_dependencyMap[0], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _propTypes = _require(_dependencyMap[1], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var CubeMapPropType = _require(_dependencyMap[2], './CubeMapPropType');
+
+  var ColorPropType = _require(_dependencyMap[3], 'react-native').ColorPropType;
+
+  var MaterialPropTypes = {
+    shininess: _propTypes2.default.number,
+    fresnelExponent: _propTypes2.default.number,
+    lightingModel: _propTypes2.default.oneOf(['Phong', 'Blinn', 'Lambert', 'Constant', 'PBR']),
+    writesToDepthBuffer: _propTypes2.default.bool,
+    readsFromDepthBuffer: _propTypes2.default.bool,
+    cullMode: _propTypes2.default.oneOf(['None', 'Back', 'Front']),
+    blendMode: _propTypes2.default.oneOf(['None', 'Alpha', 'Add', 'Subtract', 'Multiply', 'Screen']),
+    diffuseTexture: _propTypes2.default.any,
+    diffuseIntensity: _propTypes2.default.number,
+    specularTexture: _propTypes2.default.any,
+    normalTexture: _propTypes2.default.any,
+    reflectiveTexture: CubeMapPropType,
+    diffuseColor: ColorPropType,
+    wrapS: _propTypes2.default.oneOf(['Clamp', 'Repeat', 'Mirror']),
+    wrapT: _propTypes2.default.oneOf(['Clamp', 'Repeat', 'Mirror']),
+    minificationFilter: _propTypes2.default.oneOf(['Nearest', 'Linear']),
+    magnificationFilter: _propTypes2.default.oneOf(['Nearest', 'Linear']),
+    mipFilter: _propTypes2.default.oneOf(['Nearest', 'Linear']),
+    bloomThreshold: _propTypes2.default.number,
+    roughness: _propTypes2.default.number,
+    roughnessTexture: _propTypes2.default.any,
+    metalness: _propTypes2.default.number,
+    metalnessTexture: _propTypes2.default.any,
+    ambientOcclusionTexture: _propTypes2.default.any
+  };
+  module.exports = MaterialPropTypes;
+});

@@ -1,0 +1,102 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _react = _require(_dependencyMap[0], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _propTypes = _require(_dependencyMap[1], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  var AnimationPropTypes = _require(_dependencyMap[2], './ViroAnimationPropTypes');
+
+  var invariant = _require(_dependencyMap[3], 'fbjs/lib/invariant');
+
+  var ViroAnimationValidation = function () {
+    function ViroAnimationValidation() {
+      _classCallCheck(this, ViroAnimationValidation);
+    }
+
+    _createClass(ViroAnimationValidation, null, [{
+      key: "validateAnimationProp",
+      value: function validateAnimationProp(prop, animationName, animation, caller) {
+        if (!__DEV__) {
+          return;
+        }
+
+        if (allAnimationTypes[prop] === undefined) {
+          var message1 = '"' + prop + '" is not a valid animation property.';
+          var message2 = '\nValid animation props: ' + JSON.stringify(Object.keys(allAnimationTypes).sort(), null, '  ');
+          animationError(message1, animation, caller, message2);
+        }
+
+        var errorCallback = function errorCallback() {
+          animationError('"' + prop + '" of animation "' + animationName + '" is not valid.', animation, caller);
+        };
+
+        var validationDict = {};
+        validationDict[prop] = AnimationPropTypes[prop];
+        var valueDict = {};
+        valueDict[prop] = animation[prop];
+
+        _propTypes2.default.checkPropTypes(validationDict, valueDict, 'prop', caller, errorCallback);
+      }
+    }, {
+      key: "validateAnimation",
+      value: function validateAnimation(name, animations) {
+        if (!__DEV__) {
+          return;
+        }
+
+        for (var prop in animations[name]) {
+          ViroAnimationValidation.validateAnimationProp(prop, name, animations[name], 'AnimationValidation ' + name);
+        }
+      }
+    }, {
+      key: "validateAnimationChain",
+      value: function validateAnimationChain(name, animations) {
+        if (!__DEV__) {
+          return;
+        }
+
+        var arrayChains = animations[name];
+
+        if (!(arrayChains.constructor === Array) || arrayChains.length <= 0) {
+          animationError("Invalid chains: Array of Animation chains must be a non empty array!", animations[name], 'AnimationValidation ' + name);
+          return;
+        }
+
+        for (var chainIndex = 0; chainIndex < arrayChains.length; chainIndex++) {
+          if (!(arrayChains[chainIndex].constructor === Array) || arrayChains[chainIndex].length <= 0) {
+            animationError("Invalid chain: individual Animation chain must be a non empty array!", animations[name], 'AnimationValidation ' + name);
+            return;
+          }
+        }
+      }
+    }, {
+      key: "addValidAnimationPropTypes",
+      value: function addValidAnimationPropTypes(animationPropTypes) {
+        for (var key in animationPropTypes) {
+          allAnimationTypes[key] = animationPropTypes[key];
+        }
+      }
+    }]);
+
+    return ViroAnimationValidation;
+  }();
+
+  var animationError = function animationError(message1, animation, caller, message2) {
+    invariant(false, message1 + '\n' + (caller || '<<unknown>>') + ': ' + JSON.stringify(animation, null, '  ') + (message2 || ''));
+  };
+
+  var allAnimationTypes = {};
+  ViroAnimationValidation.addValidAnimationPropTypes(AnimationPropTypes);
+  module.exports = ViroAnimationValidation;
+});

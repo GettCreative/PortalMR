@@ -1,0 +1,12 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = _require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+    "__packager_asset": true,
+    "httpServerLocation": "/assets/js/portal_res/portal_ship",
+    "width": 2048,
+    "height": 2048,
+    "scales": [1],
+    "hash": "693628d75f81b8ec09bfccddeaa1f17f",
+    "name": "portal_ship_specular",
+    "type": "png"
+  });
+});

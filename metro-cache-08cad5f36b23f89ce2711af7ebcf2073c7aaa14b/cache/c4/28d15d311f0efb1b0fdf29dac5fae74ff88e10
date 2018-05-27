@@ -1,0 +1,114 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/node_modules/react-viro/components/Viro360Video.js";
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  var _react = _require(_dependencyMap[1], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _resolveAssetSource = _require(_dependencyMap[2], "react-native/Libraries/Image/resolveAssetSource");
+
+  var _resolveAssetSource2 = _interopRequireDefault(_resolveAssetSource);
+
+  var _propTypes = _require(_dependencyMap[3], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var NativeModules = _require(_dependencyMap[0], 'react-native').NativeModules;
+
+  var createReactClass = _require(_dependencyMap[4], 'create-react-class');
+
+  var Viro360Video = createReactClass({
+    displayName: "Viro360Video",
+    propTypes: _extends({}, _reactNative.View.propTypes, {
+      source: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+        uri: _propTypes2.default.string
+      }), _propTypes2.default.number]).isRequired,
+      paused: _propTypes2.default.bool,
+      loop: _propTypes2.default.bool,
+      muted: _propTypes2.default.bool,
+      volume: _propTypes2.default.number,
+      onBufferStart: _propTypes2.default.func,
+      onBufferEnd: _propTypes2.default.func,
+      onFinish: _propTypes2.default.func,
+      onUpdateTime: _propTypes2.default.func,
+      onError: _propTypes2.default.func,
+      stereoMode: _propTypes2.default.oneOf(['LeftRight', 'RightLeft', 'TopBottom', 'BottomTop', 'None'])
+    }),
+    _onBufferStart: function _onBufferStart(event) {
+      this.props.onBufferStart && this.props.onBufferStart(event);
+    },
+    _onBufferEnd: function _onBufferEnd(event) {
+      this.props.onBufferEnd && this.props.onBufferEnd(event);
+    },
+    _onFinish: function _onFinish() {
+      this.props.onFinish && this.props.onFinish();
+    },
+    _onError: function _onError(event) {
+      this.props.onError && this.props.onError(event);
+    },
+    _onUpdateTime: function _onUpdateTime(event) {
+      this.props.onUpdateTime && this.props.onUpdateTime(event.nativeEvent.currentTime, event.nativeEvent.totalTime);
+    },
+    setNativeProps: function setNativeProps(nativeProps) {
+      this._component.setNativeProps(nativeProps);
+    },
+    render: function render() {
+      var _this = this;
+
+      if (this.props.src) {
+        console.error('The <Viro360Video> component takes a `source` property rather than `src`.');
+      }
+
+      var vidsrc = (0, _resolveAssetSource2.default)(this.props.source);
+
+      var nativeProps = _extends({}, this.props);
+
+      nativeProps.source = vidsrc;
+      nativeProps.onBufferStartViro = this._onBufferStart;
+      nativeProps.onBufferEndViro = this._onBufferEnd;
+      nativeProps.onErrorViro = this._onError;
+      nativeProps.onFinishViro = this._onFinish;
+      nativeProps.onUpdateTimeViro = this._onUpdateTime;
+
+      nativeProps.ref = function (component) {
+        _this._component = component;
+      };
+
+      return _react2.default.createElement(VRO360Video, _extends({}, nativeProps, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 123
+        }
+      }));
+    },
+    seekToTime: function seekToTime(timeInSeconds) {
+      switch (_reactNative.Platform.OS) {
+        case 'ios':
+          NativeModules.VRT360VideoManager.seekToTime((0, _reactNative.findNodeHandle)(this), timeInSeconds);
+          break;
+
+        case 'android':
+          NativeModules.UIManager.dispatchViewManagerCommand((0, _reactNative.findNodeHandle)(this), NativeModules.UIManager.VRT360Video.Commands.seekToTime, [timeInSeconds]);
+          break;
+      }
+    }
+  });
+  var VRO360Video = (0, _reactNative.requireNativeComponent)('VRT360Video', Viro360Video, {
+    nativeOnly: {
+      onBufferStartViro: true,
+      onBufferEndViro: true,
+      onUpdateTimeViro: true,
+      onErrorViro: true,
+      onFinishViro: true
+    }
+  });
+  module.exports = Viro360Video;
+});

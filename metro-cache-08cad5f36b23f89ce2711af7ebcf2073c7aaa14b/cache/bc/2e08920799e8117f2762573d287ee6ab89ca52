@@ -1,0 +1,68 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/node_modules/react-viro/components/ViroAnimatedComponent.js";
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  var _react = _require(_dependencyMap[1], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _propTypes = _require(_dependencyMap[2], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var createReactClass = _require(_dependencyMap[3], 'create-react-class');
+
+  var ViroAnimatedComponent = createReactClass({
+    displayName: "ViroAnimatedComponent",
+    propTypes: _extends({}, _reactNative.View.propTypes, {
+      animation: _propTypes2.default.string,
+      delay: _propTypes2.default.number,
+      loop: _propTypes2.default.bool,
+      onStart: _propTypes2.default.func,
+      onFinish: _propTypes2.default.func,
+      run: _propTypes2.default.bool
+    }),
+    _onStart: function _onStart(event) {
+      this.props.onStart && this.props.onStart();
+    },
+    _onFinish: function _onFinish(event) {
+      this.props.onFinish && this.props.onFinish();
+    },
+    setNativeProps: function setNativeProps(nativeProps) {
+      this._component.setNativeProps(nativeProps);
+    },
+    render: function render() {
+      var _this = this;
+
+      var nativeProps = _extends({}, this.props);
+
+      nativeProps.onAnimationFinishViro = this._onFinish;
+      nativeProps.onAnimationStartViro = this._onStart;
+
+      nativeProps.ref = function (component) {
+        _this._component = component;
+      };
+
+      return _react2.default.createElement(VRTAnimatedComponent, _extends({}, nativeProps, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 52
+        }
+      }));
+    }
+  });
+  var VRTAnimatedComponent = (0, _reactNative.requireNativeComponent)('VRTAnimatedComponent', ViroAnimatedComponent, {
+    nativeOnly: {
+      onAnimationStartViro: true,
+      onAnimationFinishViro: true
+    }
+  });
+  module.exports = ViroAnimatedComponent;
+});

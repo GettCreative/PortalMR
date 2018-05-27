@@ -1,0 +1,195 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var ReactViro = {
+    get ViroSceneNavigator() {
+      return _require(_dependencyMap[0], './components/ViroSceneNavigator');
+    },
+
+    get ViroScene() {
+      return _require(_dependencyMap[1], './components/ViroScene');
+    },
+
+    get ViroBox() {
+      return _require(_dependencyMap[2], './components/ViroBox');
+    },
+
+    get ViroMaterials() {
+      return _require(_dependencyMap[3], './components/Material/ViroMaterials');
+    },
+
+    get ViroMaterialVideo() {
+      return _require(_dependencyMap[4], './components/ViroMaterialVideo');
+    },
+
+    get ViroVideo() {
+      return _require(_dependencyMap[5], './components/ViroVideo');
+    },
+
+    get Viro360Video() {
+      return _require(_dependencyMap[6], './components/Viro360Video');
+    },
+
+    get ViroNode() {
+      return _require(_dependencyMap[7], './components/ViroNode');
+    },
+
+    get ViroPortal() {
+      return _require(_dependencyMap[8], './components/ViroPortal');
+    },
+
+    get ViroPortalScene() {
+      return _require(_dependencyMap[9], './components/ViroPortalScene');
+    },
+
+    get ViroCamera() {
+      return _require(_dependencyMap[10], './components/ViroCamera');
+    },
+
+    get ViroOrbitCamera() {
+      return _require(_dependencyMap[11], './components/ViroOrbitCamera');
+    },
+
+    get ViroSphere() {
+      return _require(_dependencyMap[12], './components/ViroSphere');
+    },
+
+    get ViroImage() {
+      return _require(_dependencyMap[13], './components/ViroImage');
+    },
+
+    get Viro360Image() {
+      return _require(_dependencyMap[14], './components/Viro360Image');
+    },
+
+    get ViroSkyBox() {
+      return _require(_dependencyMap[15], './components/ViroSkyBox');
+    },
+
+    get Viro3DObject() {
+      return _require(_dependencyMap[16], './components/Viro3DObject');
+    },
+
+    get ViroAnimatedComponent() {
+      return _require(_dependencyMap[17], './components/ViroAnimatedComponent');
+    },
+
+    get ViroAnimations() {
+      return _require(_dependencyMap[18], './components/Animation/ViroAnimations');
+    },
+
+    get ViroDirectionalLight() {
+      return _require(_dependencyMap[19], './components/ViroDirectionalLight');
+    },
+
+    get ViroAmbientLight() {
+      return _require(_dependencyMap[20], './components/ViroAmbientLight');
+    },
+
+    get ViroOmniLight() {
+      return _require(_dependencyMap[21], './components/ViroOmniLight');
+    },
+
+    get ViroSpotLight() {
+      return _require(_dependencyMap[22], './components/ViroSpotLight');
+    },
+
+    get ViroFlexView() {
+      return _require(_dependencyMap[23], './components/ViroFlexView');
+    },
+
+    get ViroUtils() {
+      return _require(_dependencyMap[24], './components/Utilities/ViroUtils');
+    },
+
+    get ViroText() {
+      return _require(_dependencyMap[25], './components/ViroText');
+    },
+
+    get ViroSurface() {
+      return _require(_dependencyMap[26], './components/ViroSurface');
+    },
+
+    get ViroQuad() {
+      return _require(_dependencyMap[27], './components/ViroQuad');
+    },
+
+    get ViroPolygon() {
+      return _require(_dependencyMap[28], './components/ViroPolygon');
+    },
+
+    get ViroButton() {
+      return _require(_dependencyMap[29], './components/ViroButton');
+    },
+
+    get ViroSound() {
+      return _require(_dependencyMap[30], './components/ViroSound');
+    },
+
+    get ViroSoundField() {
+      return _require(_dependencyMap[31], './components/ViroSoundField');
+    },
+
+    get ViroSpatialSound() {
+      return _require(_dependencyMap[32], './components/ViroSpatialSound');
+    },
+
+    get ViroController() {
+      return _require(_dependencyMap[33], './components/ViroController');
+    },
+
+    get ViroSpinner() {
+      return _require(_dependencyMap[34], './components/ViroSpinner');
+    },
+
+    get ViroPolyline() {
+      return _require(_dependencyMap[35], './components/ViroPolyline');
+    },
+
+    get ViroConstants() {
+      return _require(_dependencyMap[36], './components/ViroConstants');
+    },
+
+    get ViroParticleEmitter() {
+      return _require(_dependencyMap[37], './components/ViroParticleEmitter');
+    },
+
+    get ViroLightingEnvironment() {
+      return _require(_dependencyMap[38], './components/ViroLightingEnvironment');
+    },
+
+    get Viro3DSceneNavigator() {
+      return _require(_dependencyMap[39], './components/Viro3DSceneNavigator');
+    },
+
+    get ViroVRSceneNavigator() {
+      return _require(_dependencyMap[40], './components/ViroVRSceneNavigator');
+    },
+
+    get ViroARSceneNavigator() {
+      return _require(_dependencyMap[41], './components/AR/ViroARSceneNavigator');
+    },
+
+    get ViroARScene() {
+      return _require(_dependencyMap[42], './components/AR/ViroARScene');
+    },
+
+    get ViroARPlane() {
+      return _require(_dependencyMap[43], './components/AR/ViroARPlane');
+    },
+
+    get ViroARPlaneSelector() {
+      return _require(_dependencyMap[44], './components/AR/ViroARPlaneSelector');
+    },
+
+    get ViroARTrackingTargets() {
+      return _require(_dependencyMap[45], './components/AR/ViroARTrackingTargets');
+    },
+
+    get ViroARImageMarker() {
+      return _require(_dependencyMap[46], './components/AR/ViroARImageMarker');
+    }
+
+  };
+  module.exports = ReactViro;
+});

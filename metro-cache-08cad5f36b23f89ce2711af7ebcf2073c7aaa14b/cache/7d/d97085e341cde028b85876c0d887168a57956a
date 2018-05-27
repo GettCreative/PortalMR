@@ -1,0 +1,255 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'user strict';
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/node_modules/react-viro/components/ViroSpinner.js";
+
+  var _react = _require(_dependencyMap[0], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _propTypes = _require(_dependencyMap[1], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var createReactClass = _require(_dependencyMap[2], 'create-react-class');
+
+  var ViroMaterials = _require(_dependencyMap[3], './Material/ViroMaterials');
+
+  var ViroAnimations = _require(_dependencyMap[4], './Animation/ViroAnimations');
+
+  var ViroNode = _require(_dependencyMap[5], './ViroNode');
+
+  var ViroAnimatedComponent = _require(_dependencyMap[6], './ViroAnimatedComponent');
+
+  var ViroImage = _require(_dependencyMap[7], './ViroImage');
+
+  var ViroSpinner_1 = _require(_dependencyMap[8], './Resources/viro_spinner_1.png');
+
+  var ViroSpinner_1a = _require(_dependencyMap[9], './Resources/viro_spinner_1a.png');
+
+  var ViroSpinner_1_w = _require(_dependencyMap[10], './Resources/viro_spinner_1_w.png');
+
+  var ViroSpinner_1a_w = _require(_dependencyMap[11], './Resources/viro_spinner_1a_w.png');
+
+  var ViroSpinner = createReactClass({
+    displayName: "ViroSpinner",
+    propTypes: {
+      position: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      rotation: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      scalePivot: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      rotationPivot: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      scale: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      opacity: _propTypes2.default.number,
+      materials: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.string), _propTypes2.default.string]),
+      animation: _propTypes2.default.shape({
+        interruptible: _propTypes2.default.bool,
+        name: _propTypes2.default.string,
+        delay: _propTypes2.default.number,
+        loop: _propTypes2.default.bool,
+        onStart: _propTypes2.default.func,
+        onFinish: _propTypes2.default.func,
+        run: _propTypes2.default.bool
+      }),
+      transformBehaviors: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.string), _propTypes2.default.string]),
+      onTransformUpdate: _propTypes2.default.func,
+      visible: _propTypes2.default.bool,
+      type: _propTypes2.default.oneOf(['Dark', 'Light']),
+      ignoreEventHandling: _propTypes2.default.bool,
+      dragType: _propTypes2.default.oneOf(["FixedDistance", "FixedToWorld"]),
+      onHover: _propTypes2.default.func,
+      onClick: _propTypes2.default.func,
+      onClickState: _propTypes2.default.func,
+      onTouch: _propTypes2.default.func,
+      onDrag: _propTypes2.default.func,
+      onPinch: _propTypes2.default.func,
+      onRotate: _propTypes2.default.func,
+      onFuse: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+        callback: _propTypes2.default.func.isRequired,
+        timeToFuse: _propTypes2.default.number
+      }), _propTypes2.default.func]),
+      physicsBody: _propTypes2.default.shape({
+        type: _propTypes2.default.oneOf(['Dynamic', 'Kinematic', 'Static']).isRequired,
+        mass: _propTypes2.default.number,
+        restitution: _propTypes2.default.number,
+        shape: _propTypes2.default.shape({
+          type: _propTypes2.default.oneOf(["Box", "Sphere", "Compound"]).isRequired,
+          params: _propTypes2.default.arrayOf(_propTypes2.default.number)
+        }).isRequired,
+        friction: _propTypes2.default.number,
+        useGravity: _propTypes2.default.bool,
+        enabled: _propTypes2.default.bool,
+        velocity: _propTypes2.default.arrayOf(_propTypes2.default.number),
+        force: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.shape({
+          value: _propTypes2.default.arrayOf(_propTypes2.default.number),
+          position: _propTypes2.default.arrayOf(_propTypes2.default.number)
+        })), _propTypes2.default.shape({
+          value: _propTypes2.default.arrayOf(_propTypes2.default.number),
+          position: _propTypes2.default.arrayOf(_propTypes2.default.number)
+        })]),
+        torque: _propTypes2.default.arrayOf(_propTypes2.default.number)
+      }),
+      viroTag: _propTypes2.default.string,
+      onCollision: _propTypes2.default.func
+    },
+    getDefaultProps: function getDefaultProps() {
+      return {
+        type: 'Dark'
+      };
+    },
+    applyImpulse: function applyImpulse(force, position) {
+      this._component.applyImpulse(force, position);
+    },
+    applyTorqueImpulse: function applyTorqueImpulse(torque) {
+      this._component.applyTorqueImpulse(torque);
+    },
+    setVelocity: function setVelocity(velocity) {
+      this._component.setVelocity(findNodeHandle(this), velocity);
+    },
+    _onAnimationStart: function _onAnimationStart(event) {
+      this.props.animation && this.props.animation.onStart && this.props.animation.onStart();
+    },
+    _onAnimationFinish: function _onAnimationFinish(event) {
+      this.props.animation && this.props.animation.onFinish && this.props.animation.onFinish();
+    },
+    getTransformAsync: function getTransformAsync() {
+      return regeneratorRuntime.async(function getTransformAsync$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return regeneratorRuntime.awrap(this._component.getTransformAsync());
+
+            case 2:
+              return _context.abrupt("return", _context.sent);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
+    },
+    getBoundingBoxAsync: function getBoundingBoxAsync() {
+      return regeneratorRuntime.async(function getBoundingBoxAsync$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return regeneratorRuntime.awrap(this._component.getBoundingBoxAsync());
+
+            case 2:
+              return _context2.abrupt("return", _context2.sent);
+
+            case 3:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this);
+    },
+    render: function render() {
+      var _this = this;
+
+      var transformBehaviors = typeof this.props.transformBehaviors === 'string' ? new Array(this.props.transformBehaviors) : this.props.transformBehaviors;
+      return _react2.default.createElement(
+        ViroNode,
+        {
+          position: this.props.position,
+          rotation: this.props.rotation,
+          scale: this.props.scale,
+          rotationPivot: this.props.rotationPivot,
+          scalePivot: this.props.scalePivot,
+          physicsBody: this.props.physicsBody,
+          opacity: this.props.opacity,
+          transformBehaviors: transformBehaviors,
+          visible: this.props.visible,
+          onHover: this.props.onHover,
+          onClick: this.props.onClick,
+          onClickState: this.props.onClickState,
+          onTouch: this.props.onTouch,
+          onDrag: this.props.onDrag,
+          onPinch: this.props.onPinch,
+          onRotate: this.props.onRotate,
+          onFuse: this.props.onFuse,
+          animation: this.props.animation,
+          onAnimationStartViro: this._onAnimationStart,
+          onAnimationFinishViro: this._onAnimationFinish,
+          dragType: this.props.dragType,
+          ignoreEventHandling: this.props.ignoreEventHandling,
+          onTransformUpdate: this.props.onTransformUpdate,
+          ref: function ref(component) {
+            _this._component = component;
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 152
+          }
+        },
+        _react2.default.createElement(
+          ViroAnimatedComponent,
+          {
+            animation: "_ViroSpinner_clockwiseZ",
+            run: true,
+            loop: true,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 174
+            }
+          },
+          _react2.default.createElement(ViroImage, {
+            source: this._getImage1(),
+            materials: this.props.materials,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 175
+            }
+          })
+        ),
+        _react2.default.createElement(
+          ViroAnimatedComponent,
+          {
+            animation: "_ViroSpinner_counterClockwiseZ",
+            run: true,
+            loop: true,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 179
+            }
+          },
+          _react2.default.createElement(ViroImage, {
+            position: [0, 0, .01],
+            source: this._getImage1a(),
+            materials: this.props.materials,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 180
+            }
+          })
+        )
+      );
+    },
+    _getImage1: function _getImage1() {
+      return this.props.type.toUpperCase() == 'Light'.toUpperCase() ? ViroSpinner_1 : ViroSpinner_1_w;
+    },
+    _getImage1a: function _getImage1a() {
+      return this.props.type.toUpperCase() == 'Light'.toUpperCase() ? ViroSpinner_1a : ViroSpinner_1a_w;
+    }
+  });
+  ViroAnimations.registerAnimations({
+    _ViroSpinner_counterClockwiseZ: {
+      properties: {
+        rotateZ: "+=90"
+      },
+      duration: 250
+    },
+    _ViroSpinner_clockwiseZ: {
+      properties: {
+        rotateZ: "-=90"
+      },
+      duration: 250
+    }
+  });
+  module.exports = ViroSpinner;
+});

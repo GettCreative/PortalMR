@@ -1,0 +1,84 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/node_modules/react-viro/components/ViroLightingEnvironment.js";
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  var _react = _require(_dependencyMap[1], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _resolveAssetSource = _require(_dependencyMap[2], "react-native/Libraries/Image/resolveAssetSource");
+
+  var _resolveAssetSource2 = _interopRequireDefault(_resolveAssetSource);
+
+  var _propTypes = _require(_dependencyMap[3], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var createReactClass = _require(_dependencyMap[4], 'create-react-class');
+
+  var ViroLightingEnvironment = createReactClass({
+    displayName: "ViroLightingEnvironment",
+    propTypes: _extends({}, _reactNative.View.propTypes, {
+      source: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+        uri: _propTypes2.default.string
+      }), _propTypes2.default.number]).isRequired,
+      onLoadStart: _propTypes2.default.func,
+      onLoadEnd: _propTypes2.default.func,
+      onError: _propTypes2.default.func
+    }),
+    _onLoadStart: function _onLoadStart(event) {
+      this.props.onLoadStart && this.props.onLoadStart(event);
+    },
+    _onLoadEnd: function _onLoadEnd(event) {
+      this.props.onLoadEnd && this.props.onLoadEnd(event);
+    },
+    _onError: function _onError(event) {
+      this.props.onError && this.props.onError(event);
+    },
+    setNativeProps: function setNativeProps(nativeProps) {
+      this._component.setNativeProps(nativeProps);
+    },
+    render: function render() {
+      var _this = this;
+
+      var imgsrc = (0, _resolveAssetSource2.default)(this.props.source);
+
+      if (this.props.src) {
+        console.error('The <ViroLightingEnvironment> component takes a `source` property rather than `src`.');
+      }
+
+      var nativeProps = _extends({}, this.props);
+
+      nativeProps.source = imgsrc;
+      nativeProps.onErrorViro = this._onError;
+      nativeProps.onLoadStartViro = this._onLoadStart;
+      nativeProps.onLoadEndViro = this._onLoadEnd;
+
+      nativeProps.ref = function (component) {
+        _this._component = component;
+      };
+
+      return _react2.default.createElement(VRTLightingEnvironment, _extends({}, nativeProps, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 94
+        }
+      }));
+    }
+  });
+  var VRTLightingEnvironment = (0, _reactNative.requireNativeComponent)('VRTLightingEnvironment', ViroLightingEnvironment, {
+    nativeOnly: {
+      onLoadStartViro: true,
+      onErrorViro: true,
+      onLoadEndViro: true
+    }
+  });
+  module.exports = ViroLightingEnvironment;
+});

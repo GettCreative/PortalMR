@@ -1,0 +1,162 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _require(_dependencyMap[0], "react");
+
+  var _react3 = _interopRequireDefault(_react2);
+
+  var _index = _require(_dependencyMap[1], "./../node_modules/react-transform-hmr/lib/index.js");
+
+  var _index2 = _interopRequireDefault(_index);
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/js/HelloWorldSceneAR.js";
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _reactNative = _require(_dependencyMap[2], "react-native");
+
+  var _ARscene = _require(_dependencyMap[3], "./ARscene2");
+
+  var _ARscene2 = _interopRequireDefault(_ARscene);
+
+  var _reactViro = _require(_dependencyMap[4], "react-viro");
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _components = {
+    HelloWorldSceneAR: {
+      displayName: "HelloWorldSceneAR"
+    }
+  };
+
+  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: "/home/nooreddein/Desktop/ViroSample/js/HelloWorldSceneAR.js",
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  var HelloWorldSceneAR = _wrapComponent("HelloWorldSceneAR")(function (_Component) {
+    _inherits(HelloWorldSceneAR, _Component);
+
+    function HelloWorldSceneAR() {
+      _classCallCheck(this, HelloWorldSceneAR);
+
+      var _this = _possibleConstructorReturn(this, (HelloWorldSceneAR.__proto__ || Object.getPrototypeOf(HelloWorldSceneAR)).call(this));
+
+      _this.state = {
+        text: "initializing AR..."
+      };
+      _this._onInitialized = _this._onInitialized.bind(_this);
+      return _this;
+    }
+
+    _createClass(HelloWorldSceneAR, [{
+      key: "render",
+      value: function render() {
+        return _react3.default.createElement(
+          _reactViro.ViroARScene,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 34
+            }
+          },
+          _react3.default.createElement(_reactViro.ViroAmbientLight, {
+            color: "#ffffff",
+            intensity: 200,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 35
+            }
+          }),
+          _react3.default.createElement(
+            _reactViro.ViroPortalScene,
+            {
+              passable: true,
+              dragType: "FixedDistance",
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 36
+              }
+            },
+            _react3.default.createElement(
+              _reactViro.ViroPortal,
+              {
+                position: [0, 0, -1],
+                scale: [.1, .1, .1],
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 37
+                }
+              },
+              _react3.default.createElement(_reactViro.Viro3DObject, {
+                source: _require(_dependencyMap[5], './portal_res/portal_ship/portal_ship.vrx'),
+                resources: [_require(_dependencyMap[6], './portal_res/portal_ship/portal_ship_diffuse.png'), _require(_dependencyMap[7], './portal_res/portal_ship/portal_ship_normal.png'), _require(_dependencyMap[8], './portal_res/portal_ship/portal_ship_specular.png')],
+                type: "VRX",
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 38
+                }
+              })
+            ),
+            _react3.default.createElement(_reactViro.Viro360Image, {
+              source: _require(_dependencyMap[9], "./portal_res/360_island.jpg"),
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 44
+              }
+            })
+          ),
+          _react3.default.createElement(_ARscene2.default, {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 46
+            }
+          })
+        );
+      }
+    }, {
+      key: "_onInitialized",
+      value: function _onInitialized(state, reason) {
+        if (state == ViroConstants.TRACKING_NORMAL) {
+          this.setState({
+            text: "HEY RBK!"
+          });
+        } else if (state == ViroConstants.TRACKING_NONE) {}
+      }
+    }]);
+
+    return HelloWorldSceneAR;
+  }(_react2.Component));
+
+  exports.default = HelloWorldSceneAR;
+
+  var styles = _reactNative.StyleSheet.create({
+    helloWorldTextStyle: {
+      fontFamily: 'Arial',
+      fontSize: 30,
+      color: 'black',
+      textAlignVertical: 'center',
+      textAlign: 'center'
+    }
+  });
+
+  module.exports = HelloWorldSceneAR;
+});

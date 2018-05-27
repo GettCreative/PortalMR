@@ -1,0 +1,95 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _resolveAssetSource = _require(_dependencyMap[0], "react-native/Libraries/Image/resolveAssetSource");
+
+  var _resolveAssetSource2 = _interopRequireDefault(_resolveAssetSource);
+
+  var _AssetRegistry = _require(_dependencyMap[1], "react-native/Libraries/Image/AssetRegistry");
+
+  var _AssetRegistry2 = _interopRequireDefault(_AssetRegistry);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  var MaterialManager = _require(_dependencyMap[2], 'react-native').NativeModules.VRTMaterialManager;
+
+  var MaterialPropTypes = _require(_dependencyMap[3], './MaterialPropTypes');
+
+  var MaterialValidation = _require(_dependencyMap[4], './MaterialValidation');
+
+  var invariant = _require(_dependencyMap[5], 'fbjs/lib/invariant');
+
+  var processColor = _require(_dependencyMap[2], 'react-native').processColor;
+
+  var ViroMaterials = function () {
+    function ViroMaterials() {
+      _classCallCheck(this, ViroMaterials);
+    }
+
+    _createClass(ViroMaterials, null, [{
+      key: "createMaterials",
+      value: function createMaterials(materials) {
+        var result = {};
+
+        for (var key in materials) {
+          MaterialValidation.validateMaterial(key, materials);
+          var materialDict = materials[key];
+          var resultMaterial = {};
+
+          for (var materialProperty in materialDict) {
+            if (materialProperty.endsWith('texture') || materialProperty.endsWith('Texture')) {
+              if (materialProperty === 'ReflectiveTexture' || materialProperty === 'reflectiveTexture') {
+                var reflectiveShape = {};
+
+                for (var cubeMapTexture in materialDict[materialProperty]) {
+                  var cubeMapSource = (0, _resolveAssetSource2.default)(materialDict[materialProperty][cubeMapTexture]);
+                  reflectiveShape[cubeMapTexture] = cubeMapSource;
+                }
+
+                resultMaterial[materialProperty] = reflectiveShape;
+              } else if (materialDict[materialProperty].hasOwnProperty('source')) {
+                var source = (0, _resolveAssetSource2.default)(materialDict[materialProperty]['source']);
+                resultMaterial[materialProperty] = materialDict[materialProperty];
+                resultMaterial[materialProperty]['source'] = source;
+              } else {
+                var assetType = "unknown";
+
+                if (typeof materialDict[materialProperty] !== 'object') {
+                  var asset = _AssetRegistry2.default.getAssetByID(materialDict[materialProperty]);
+
+                  if (asset) {
+                    assetType = asset.type;
+                  }
+                }
+
+                var source = (0, _resolveAssetSource2.default)(materialDict[materialProperty]);
+                source["type"] = assetType;
+                resultMaterial[materialProperty] = source;
+              }
+            } else if (materialProperty.endsWith('color') || materialProperty.endsWith('Color')) {
+              var color = processColor(materialDict[materialProperty]);
+              resultMaterial[materialProperty] = color;
+            } else {
+              resultMaterial[materialProperty] = materialDict[materialProperty];
+            }
+
+            result[key] = resultMaterial;
+          }
+        }
+
+        MaterialManager.setJSMaterials(result);
+      }
+    }, {
+      key: "deleteMaterials",
+      value: function deleteMaterials(materials) {
+        MaterialManager.deleteMaterials(materials);
+      }
+    }]);
+
+    return ViroMaterials;
+  }();
+
+  module.exports = ViroMaterials;
+});

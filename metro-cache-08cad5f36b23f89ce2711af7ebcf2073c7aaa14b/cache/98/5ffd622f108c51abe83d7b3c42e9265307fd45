@@ -1,0 +1,112 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _require(_dependencyMap[0], "react");
+
+  var _react3 = _interopRequireDefault(_react2);
+
+  var _index = _require(_dependencyMap[1], "./../node_modules/react-transform-hmr/lib/index.js");
+
+  var _index2 = _interopRequireDefault(_index);
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/js/HelloWorldScene.js";
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _reactNative = _require(_dependencyMap[2], "react-native");
+
+  var _reactViro = _require(_dependencyMap[3], "react-viro");
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _components = {
+    HelloWorldScene: {
+      displayName: "HelloWorldScene"
+    }
+  };
+
+  var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: "/home/nooreddein/Desktop/ViroSample/js/HelloWorldScene.js",
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  var HelloWorldScene = _wrapComponent("HelloWorldScene")(function (_Component) {
+    _inherits(HelloWorldScene, _Component);
+
+    function HelloWorldScene() {
+      _classCallCheck(this, HelloWorldScene);
+
+      var _this = _possibleConstructorReturn(this, (HelloWorldScene.__proto__ || Object.getPrototypeOf(HelloWorldScene)).call(this));
+
+      _this.state = {};
+      return _this;
+    }
+
+    _createClass(HelloWorldScene, [{
+      key: "render",
+      value: function render() {
+        return _react3.default.createElement(
+          _reactViro.ViroScene,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 23
+            }
+          },
+          _react3.default.createElement(_reactViro.Viro360Video, {
+            source: _require(_dependencyMap[4], './portal_res/dino.mp4'),
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 24
+            }
+          }),
+          _react3.default.createElement(_reactViro.ViroText, {
+            text: " World!",
+            width: 2,
+            height: 2,
+            position: [0, 0, -2],
+            style: styles.helloWorldTextStyle,
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 25
+            }
+          })
+        );
+      }
+    }]);
+
+    return HelloWorldScene;
+  }(_react2.Component));
+
+  exports.default = HelloWorldScene;
+
+  var styles = _reactNative.StyleSheet.create({
+    helloWorldTextStyle: {
+      fontFamily: 'Arial',
+      fontSize: 60,
+      color: '#ffffff',
+      textAlignVertical: 'center',
+      textAlign: 'center'
+    }
+  });
+
+  module.exports = HelloWorldScene;
+});

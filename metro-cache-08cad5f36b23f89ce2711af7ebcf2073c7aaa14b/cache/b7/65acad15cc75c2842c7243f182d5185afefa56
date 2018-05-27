@@ -1,0 +1,81 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _react = _require(_dependencyMap[0], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _propTypes = _require(_dependencyMap[1], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  var MaterialPropTypes = _require(_dependencyMap[2], './MaterialPropTypes');
+
+  var invariant = _require(_dependencyMap[3], 'fbjs/lib/invariant');
+
+  var MaterialValidation = function () {
+    function MaterialValidation() {
+      _classCallCheck(this, MaterialValidation);
+    }
+
+    _createClass(MaterialValidation, null, [{
+      key: "validateMaterialProp",
+      value: function validateMaterialProp(prop, materialName, material, caller) {
+        if (!__DEV__) {
+          return;
+        }
+
+        if (allMaterialTypes[prop] === undefined) {
+          var message1 = '"' + prop + '" of material "' + materialName + '" is not a valid material property.';
+          var message2 = '\nValid material props: ' + JSON.stringify(Object.keys(allMaterialTypes).sort(), null, '  ');
+          materialError(message1, material, caller, message2);
+        }
+
+        var errorCallback = function errorCallback() {
+          materialError('"' + prop + '" of material "' + materialName + '" is not valid.', material, caller);
+        };
+
+        var validationDict = {};
+        validationDict[prop] = MaterialPropTypes[prop];
+        var valueDict = {};
+        valueDict[prop] = material[prop];
+
+        _propTypes2.default.checkPropTypes(validationDict, valueDict, 'prop', caller, errorCallback);
+      }
+    }, {
+      key: "validateMaterial",
+      value: function validateMaterial(name, materials) {
+        if (!__DEV__) {
+          return;
+        }
+
+        for (var prop in materials[name]) {
+          MaterialValidation.validateMaterialProp(prop, name, materials[name], 'MaterialValidation ' + name);
+        }
+      }
+    }, {
+      key: "addValidMaterialPropTypes",
+      value: function addValidMaterialPropTypes(materialPropTypes) {
+        for (var key in materialPropTypes) {
+          allMaterialTypes[key] = materialPropTypes[key];
+        }
+      }
+    }]);
+
+    return MaterialValidation;
+  }();
+
+  var materialError = function materialError(message1, material, caller, message2) {
+    invariant(false, message1 + '\n' + (caller || '<<unknown>>') + ': ' + JSON.stringify(material, null, '  ') + (message2 || ''));
+  };
+
+  var allMaterialTypes = {};
+  MaterialValidation.addValidMaterialPropTypes(MaterialPropTypes);
+  module.exports = MaterialValidation;
+});

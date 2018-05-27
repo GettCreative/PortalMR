@@ -1,0 +1,96 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  'use strict';
+
+  var _jsxFileName = "/home/nooreddein/Desktop/ViroSample/node_modules/react-viro/components/Viro360Image.js";
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  var _react = _require(_dependencyMap[1], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _resolveAssetSource = _require(_dependencyMap[2], "react-native/Libraries/Image/resolveAssetSource");
+
+  var _resolveAssetSource2 = _interopRequireDefault(_resolveAssetSource);
+
+  var _propTypes = _require(_dependencyMap[3], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  var createReactClass = _require(_dependencyMap[4], 'create-react-class');
+
+  var Viro360Image = createReactClass({
+    displayName: "Viro360Image",
+    propTypes: _extends({}, _reactNative.View.propTypes, {
+      source: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+        uri: _propTypes2.default.string
+      }), _propTypes2.default.number]).isRequired,
+      rotation: _propTypes2.default.arrayOf(_propTypes2.default.number),
+      format: _propTypes2.default.oneOf(['RGBA8', 'RGB565']),
+      stereoMode: _propTypes2.default.oneOf(['LeftRight', 'RightLeft', 'TopBottom', 'BottomTop', 'None']),
+      onLoadStart: _propTypes2.default.func,
+      onLoadEnd: _propTypes2.default.func,
+      onError: _propTypes2.default.func,
+      isHdr: _propTypes2.default.bool
+    }),
+    _onLoadStart: function _onLoadStart(event) {
+      this.props.onLoadStart && this.props.onLoadStart(event);
+    },
+    _onLoadEnd: function _onLoadEnd(event) {
+      this.props.onLoadEnd && this.props.onLoadEnd(event);
+    },
+    _onError: function _onError(event) {
+      this.props.onError && this.props.onError(event);
+    },
+    setNativeProps: function setNativeProps(nativeProps) {
+      this._component.setNativeProps(nativeProps);
+    },
+    render: function render() {
+      var _this = this;
+
+      var imgsrc = (0, _resolveAssetSource2.default)(this.props.source);
+
+      if (this.props.src) {
+        console.error('The <Viro360Image> component takes a `source` property rather than `src`.');
+      }
+
+      if (this.props.onGaze) {
+        console.error('The <Viro360Image> component does not take on an `onGaze` property. Pass the `onGaze` prop to <ViroScene> instead.');
+      }
+
+      if (this.props.onTap) {
+        console.error('The <Viro360Image> component does not take on an `onTap` property. Pass the `onTap` prop to <ViroScene> instead.');
+      }
+
+      var nativeProps = _extends({}, this.props);
+
+      nativeProps.source = imgsrc;
+      nativeProps.onErrorViro = this._onError;
+      nativeProps.onLoadStartViro = this._onLoadStart;
+      nativeProps.onLoadEndViro = this._onLoadEnd;
+
+      nativeProps.ref = function (component) {
+        _this._component = component;
+      };
+
+      return _react2.default.createElement(VRT360Image, _extends({}, nativeProps, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 110
+        }
+      }));
+    }
+  });
+  var VRT360Image = (0, _reactNative.requireNativeComponent)('VRT360Image', Viro360Image, {
+    nativeOnly: {
+      onLoadStartViro: true,
+      onErrorViro: true,
+      onLoadEndViro: true
+    }
+  });
+  module.exports = Viro360Image;
+});

@@ -1,0 +1,12 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = _require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+    "__packager_asset": true,
+    "httpServerLocation": "/assets/js/portal_res",
+    "width": 4000,
+    "height": 1873,
+    "scales": [1],
+    "hash": "ef124b5d623ec158f1e125cd49a4381e",
+    "name": "360_island",
+    "type": "jpg"
+  });
+});
