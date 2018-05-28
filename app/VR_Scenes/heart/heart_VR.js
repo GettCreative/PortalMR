@@ -21,12 +21,14 @@ export default class VR extends Component {
   render() {
     return (
       <ViroScene>
-        <Viro360Video source={require('../../images/planet.mp4')} />
+        <Viro360Video source={{uri: 'https://salsabeelvideos.s3.us-west-2.amazonaws.com/ATRIA+-+A+journey+Into+Your+Heart.mp4',}} />
+
       </ViroScene>
     );
   }
 
 }
+// require('../../images/planet.mp4')
 
 // var styles = StyleSheet.create({
 //   helloWorldTextStyle: {

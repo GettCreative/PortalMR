@@ -57,6 +57,7 @@ var password = req.body.password
 app.post("/login",function(req,res){
  var email=req.body.email;
  var password=req.body.password;
+ console.log(req.body)
  //searching for user by the username and comparing passwords.
  User.findOne({email:email},function(err,user){
   if(err)
