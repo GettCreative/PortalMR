@@ -66,6 +66,7 @@ ardino(){
           <Text style={{marginBottom: 10}}>
             A collection of eight planets and their moons in orbit round the sun, together with smaller bodies in the form of asteroids, meteoroids, and comets.
           </Text>
+
           <Button
             onPress={this.arplanet}
             icon={<Icon name='code' color='#ffffff' />}
@@ -81,7 +82,19 @@ ardino(){
               backgroundColor='#ffb300'
               buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
               title='Learn In Virtual Reality' />
+
+              <Text></Text>
+
+              <Button
+                onPress = {this.vrplanet}
+                icon={<Icon name='code' color='green' />}
+                backgroundColor='#ffb300'
+                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+                title='Learn More' />
+
             </Card>
+
+
 
 
             <Card
