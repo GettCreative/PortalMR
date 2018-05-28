@@ -18,7 +18,7 @@ export default class SignUp extends React.Component {
   login(){
     var that = this
     if(this.state.email.length && this.state.password.length !==0){
-    fetch('http://192.168.0.55:3000/login', {
+    fetch('http://192.168.1.157:3000/login', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -30,8 +30,6 @@ export default class SignUp extends React.Component {
       }),
     }).then((responsedata) => {
         if(responsedata.status === 200){
-
-          alert('Signedin Successfully')
           Actions.gal()
         }else{
           alert("something error")
