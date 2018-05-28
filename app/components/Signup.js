@@ -37,6 +37,7 @@ export default class Signup extends React.Component {
     var that = this
   if(this.state.email.length && this.state.password.length && this.state.name && this.state.username!==0){
     fetch('http://192.168.55:3000/signup', { //Please use your IP Address
+
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -50,7 +51,6 @@ export default class Signup extends React.Component {
       }),
     }).then((responsedata) => {
         if(responsedata.status === 200){
-          alert('Signup Successfully')
           Actions.gal()
         }else{
           alert("This email is already taken.!")

@@ -9,7 +9,7 @@ import {
 import Routes from './app/Routes'
 import Gallery from './app/components/Gallery'
 //import Test from './app/components/SignInTest'
-
+import Test_AR from './app/testScene.js'
 
 
 
@@ -17,7 +17,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <Routes />
+      <Test_AR />
       </View>
     );
   }

@@ -56,6 +56,10 @@ export default class Gallery extends Component {
     Actions.logout()
   }
 
+  arskeleton(){
+    Actions.arskeleton()
+  }
+
   render() {
     return (
       <ScrollView style={styles.Container}>
@@ -170,6 +174,7 @@ export default class Gallery extends Component {
                             onPress = {() => Linking.openURL('https://en.wikipedia.org/wiki/Shark')}
                             icon={<Icon name='code' color='green' />}
                             backgroundColor='#7B1FA2'
+
                             buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                             title='Learn More' />
 
