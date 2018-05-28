@@ -18,7 +18,7 @@ var sharedProps = {
 }
 
 
-export default class Test_AR extends Component{
+export default class Skeleton extends Component{
 	constructor(){
 		super()
 		this.state = {

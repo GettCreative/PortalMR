@@ -38,6 +38,9 @@ export default class Gallery extends Component {
   vrskeleton (){
     Actions.vrskeleton()
   }
+  arskeleton(){
+    Actions.arskeleton()
+  }
 arshark(){
   Actions.arshark()
 }
@@ -174,6 +177,7 @@ ardino(){
                             by adulthood after some bones get fused together.
                           </Text>
                           <Button
+                          onPress={this.arskeleton}
                             icon={<Icon name='code' color='#ffffff' />}
                             backgroundColor='#03A9F4'
                             buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}

@@ -13,6 +13,7 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "mongoose": "^5.1.2",
+    "ngrok": "^3.0.1",
     "react": "16.3.1",
     "react-native": "^0.55.4",
     "react-native-elements": "^0.19.1",

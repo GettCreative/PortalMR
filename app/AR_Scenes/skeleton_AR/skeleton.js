@@ -39,9 +39,7 @@ export default class HelloWorldSceneAR extends Component {
           <ViroPortalScene passable={true} dragType="FixedDistance" >
             <ViroPortal position={[0, 0, -1]} scale={[0.1, 0.1, 0.1]}>
 
-              <Viro3DObject source={require('./portal_res/HeartFinal/Heart_.obj')}
-                resources={[require('./portal_res/HeartFinal/Heart_2048.jpg'),
-                            require('./portal_res/HeartFinal/heartDiagram.jpg')]}
+              <Viro3DObject source={require('../../AR_objects/skeleton/Skeleton.obj')}
                     type="OBJ"/>
 
             </ViroPortal>
