@@ -11,7 +11,7 @@ import {
   ViroVRSceneNavigator,
   ViroARSceneNavigator
 } from 'react-viro';
-import VR from './VR.js'
+import VR from './heart_VR.js'
 var InitialVRScene = VR
 var sharedProps = {
 	apiKey:"C56CA371-C465-48F7-A0E4-EC7B0F146BCC"
