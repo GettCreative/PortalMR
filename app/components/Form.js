@@ -21,8 +21,12 @@ export default class SignUp extends React.Component {
   login(){
     var that = this
     if(this.state.email.length && this.state.password.length !==0){
+<<<<<<< HEAD
     fetch('http://192.168.0.55:3000/login', { //Please use your IP Address
 
+=======
+    fetch('http://192.168.2.15:3000/login', {
+>>>>>>> rebase
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -41,11 +45,19 @@ export default class SignUp extends React.Component {
 
           Actions.gal()
         }else{
+<<<<<<< HEAD
           alert("Username or Password is incorrect!")
         }
     })
   }
   else{alert("Please fill all your information!")}
+=======
+          alert("incorrect email or password")
+        }
+    })
+  }
+  else{alert("please enter your information")}
+>>>>>>> rebase
 }
 
 
