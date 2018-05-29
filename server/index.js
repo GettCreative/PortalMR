@@ -53,7 +53,7 @@ var password = req.body.password
 
 
 //login
-//let the login with email and password "salsabeel"
+//let the login with email and password 
 app.post("/login",function(req,res){
  var email=req.body.email;
  var password=req.body.password;
@@ -80,6 +80,95 @@ app.post("/login",function(req,res){
    })}
  })
 });
+
+
+//upload video to amazon s3 to get the urls for videos
+app.post('/api/upload', function (req, res, next) {
+  const element1 = req.body.element1;
+  var busboy = new Busboy({ headers: req.headers });
+
+  console.log('element1');
+  console.log(element1);
+
+  busboy.on('finish',function(){
+      console.log('upload finished')
+  })
+
+
+  console.log('files')
+  console.log(req.files)
+
+
+  const file=req.files.element2;
+  console.log(file)
+
+  let s3bucket=new AWS.S3({
+  accessKeyId: IAM_USER_KEY,
+  secretAccessKey: IAM_USER_SECRET,
+  Bucket: BUCKET_NAME,
+
+  });
+
+
+s3bucket.createBucket(function () {
+  var params = {
+   Bucket: BUCKET_NAME,
+   Key: file.name,
+   Body: file.data,
+  };
+
+   s3bucket.upload(params, function (err, data) {
+   if (err) {
+    console.log('error in callback');
+    console.log(err);
+   }
+   console.log('success');
+   console.log(data);
+  });
+});
+
+ req.pipe(busboy);
+});
+
+
+//downlod video from amazon to my local pc  
+app.get('/api/upload/get',function(req,res,next){
+  
+  let s3bucket=new AWS.S3({
+  accessKeyId: IAM_USER_KEY,
+  secretAccessKey: IAM_USER_SECRET,
+  Bucket: BUCKET_NAME,
+
+  });
+
+  s3bucket.createBucket(function () {
+  var params = {
+   Bucket: BUCKET_NAME,
+   //to download any video just take the name of it from amazon and put it in key
+   Key:video_name,
+   
+  };
+  s3bucket.getObject(params,function(err,data){
+    if(err){
+      console.log('error in callback')
+      console.log(err)
+    }
+    console.log('success');
+    console.log(data);
+
+    res.setHeader('Content-disposition','attachment; filename=planet (1).mp4')
+    res.setHeader('Content-length',data.ContentLength);
+    res.end(data.Body)
+  })
+
+
+  })
+});
+
+
+
+
+
 
 
 
