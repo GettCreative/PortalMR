@@ -53,7 +53,7 @@ var password = req.body.password
 
 
 //login
-//let the login with email and password "salsabeel"
+//let the login with email and password 
 app.post("/login",function(req,res){
  var email=req.body.email;
  var password=req.body.password;
@@ -82,7 +82,7 @@ app.post("/login",function(req,res){
 });
 
 
-//upload video to amazon s3 to get the urls for videos
+
 app.post('/api/upload', function (req, res, next) {
   const element1 = req.body.element1;
   var busboy = new Busboy({ headers: req.headers });
@@ -129,6 +129,42 @@ s3bucket.createBucket(function () {
 
  req.pipe(busboy);
 });
+
+
+ 
+app.get('/api/upload/get',function(req,res,next){
+  
+  let s3bucket=new AWS.S3({
+  accessKeyId: IAM_USER_KEY,
+  secretAccessKey: IAM_USER_SECRET,
+  Bucket: BUCKET_NAME,
+
+  });
+
+  s3bucket.createBucket(function () {
+  var params = {
+   Bucket: BUCKET_NAME,
+   Key:video_name,
+   
+  };
+  s3bucket.getObject(params,function(err,data){
+    if(err){
+      console.log('error in callback')
+      console.log(err)
+    }
+    console.log('success');
+    console.log(data);
+
+    res.setHeader('Content-disposition','attachment; filename=planet (1).mp4')
+    res.setHeader('Content-length',data.ContentLength);
+    res.end(data.Body)
+  })
+
+
+  })
+});
+
+
 
 
 
