@@ -82,7 +82,7 @@ app.post("/login",function(req,res){
 });
 
 
-
+//upload video to amazon s3 to get the urls for videos
 app.post('/api/upload', function (req, res, next) {
   const element1 = req.body.element1;
   var busboy = new Busboy({ headers: req.headers });
@@ -131,7 +131,7 @@ s3bucket.createBucket(function () {
 });
 
 
- 
+//downlod video from amazon to my local pc  
 app.get('/api/upload/get',function(req,res,next){
   
   let s3bucket=new AWS.S3({
@@ -144,6 +144,7 @@ app.get('/api/upload/get',function(req,res,next){
   s3bucket.createBucket(function () {
   var params = {
    Bucket: BUCKET_NAME,
+   //to download any video just take the name of it from amazon and put it in key
    Key:video_name,
    
   };
