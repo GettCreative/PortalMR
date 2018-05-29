@@ -81,6 +81,12 @@ app.post("/login",function(req,res){
  })
 });
 
+//logout
+app.get('/logout',function(req,res){
+    req.session.destroy()
+    console.log('Successful loged out');
+    res.send(`Goodbye you loged out now .. see you later`);
+    })
 
 
 var port = 3000
