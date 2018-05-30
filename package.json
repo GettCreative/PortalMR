@@ -9,7 +9,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "aws-sdk": "^2.248.1",
     "bcrypt": "^2.0.1",
+    "busboy": "^0.2.14",
+    "busboy-body-parser": "^0.3.2",
+    "connect-busboy": "0.0.2",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "mongoose": "^5.1.2",
@@ -24,8 +28,12 @@
   },
   "devDependencies": {
     "babel-jest": "22.4.3",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react-native": "^4.0.0",
-    "jest": "22.4.3",
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "jest": "^22.4.3",
+    "mocha": "^5.2.0",
     "react-test-renderer": "16.3.1"
   },
   "jest": {
