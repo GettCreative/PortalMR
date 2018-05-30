@@ -194,6 +194,12 @@ app.get('/api/upload/get',function(req,res,next){
 
 
 
+//logout
+// app.get('/logout',function(req,res){
+//     req.session.destroy()
+//     console.log('Successful logged out');
+//     res.send(`Goodbye you logged out now .. see you later`);
+//     })
 
 
 var port = 3000
