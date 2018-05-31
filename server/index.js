@@ -81,7 +81,7 @@ var password = req.body.password
 
 
 //login
-//let the login with email and password 
+//let the login with email and password
 app.post("/login",function(req,res){
  var email=req.body.email;
  var password=req.body.password;
@@ -97,7 +97,7 @@ app.post("/login",function(req,res){
    else{
    bcrypt.compare(password,user.password,function(err,match){
          if(match){
-           
+
            utils.createSession(req,res,user);
 
          }else{
@@ -158,9 +158,9 @@ s3bucket.createBucket(function () {
 
 
 
-//downlod video from amazon 
+//downlod video from amazon
 app.get('/api/upload/get',function(req,res,next){
-  
+
   let s3bucket=new AWS.S3({
   accessKeyId: IAM_USER_KEY,
   secretAccessKey: IAM_USER_SECRET,
@@ -172,7 +172,7 @@ app.get('/api/upload/get',function(req,res,next){
   var params = {
    Bucket: BUCKET_NAME,
    Key:video_name,
-   
+
   };
   s3bucket.getObject(params,function(err,data){
     if(err){
@@ -192,20 +192,8 @@ app.get('/api/upload/get',function(req,res,next){
 });
 
 
-
-
-//logout
-// app.get('/logout',function(req,res){
-//     req.session.destroy()
-//     console.log('Successful logged out');
-//     res.send(`Goodbye you logged out now .. see you later`);
-//     })
-
-
-var port = 3000
-app.listen( port , function() {
-console.log('listening on port: ', port);
-})
-
-
-
+// var port = parseInt(process.env.PORT) || 3000
+// app.listen( port , function() {
+// console.log('listening on port: ', port);
+// })
+app.listen(process.env.PORT || 5000);
