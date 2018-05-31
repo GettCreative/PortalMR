@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
-  Linking
+  Linking,
+  BackAndroid
 } from 'react-native';
 
 import {
@@ -53,7 +54,7 @@ export default class Gallery extends Component {
   }
 
   logout(){
-    Actions.logout()
+    BackAndroid.exitApp();
   }
 
   arskeleton(){
