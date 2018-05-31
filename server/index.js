@@ -192,7 +192,8 @@ app.get('/api/upload/get',function(req,res,next){
 });
 
 
-var port = 3000
-app.listen( port , function() {
-console.log('listening on port: ', port);
-})
+// var port = parseInt(process.env.PORT) || 3000
+// app.listen( port , function() {
+// console.log('listening on port: ', port);
+// })
+app.listen(process.env.PORT || 5000);
