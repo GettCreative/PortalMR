@@ -45,7 +45,9 @@ resave: false,
 saveUninitialized: true
 }))
 
-
+app.get("/", function(req,res){
+  res.send('this is working')
+})
 
 //signup
 app.post("/signup",function(req,res){
