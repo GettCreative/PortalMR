@@ -19,10 +19,10 @@
 1. [Contributing](#contributing)
 
 ## How to start the app
-```sh
+
 NOTE: you will need to install the test bed app
--click [here](https://play.google.com/store/apps/details?id=com.viromedia.viromedia) to install
-```
+-Click [here](https://play.google.com/store/apps/details?id=com.viromedia.viromedia) to install
+
 ```sh
 npm install
 -You will need three terminals
