@@ -15,7 +15,7 @@
 1. [Team](#team)
 
 ## Installing Dependencies
-run npm install or yarn install in the root of this directory.
+run npm install or yarn install in the root of this repository.
 ## How to start the app
 
 NOTE: you will need to install the test bed app
