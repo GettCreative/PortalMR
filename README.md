@@ -10,21 +10,20 @@
 
 ## Table of Contents
 
-1. [Usage](#Usage)
 1. [Requirements](#requirements)
-1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
 
+## Installing Dependencies
+run npm install or yarn install in the root of this directory.
 ## How to start the app
 
 NOTE: you will need to install the test bed app
 -Click [here](https://play.google.com/store/apps/details?id=com.viromedia.viromedia) to install
 
 ```sh
-npm install
 -You will need three terminals
 1. npm run server-dev
 2. sudo mongod
