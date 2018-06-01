@@ -19,13 +19,18 @@
 1. [Contributing](#contributing)
 
 ## How to start the app
-
+```sh
+NOTE: you will need to install the test bed app
+-click here(https://play.google.com/store/apps/details?id=com.viromedia.viromedia) to install
+```
 ```sh
 npm install
 -You will need three terminals
 1. npm run server-dev
 2. sudo mongod
 3. npm start
+4. Enter the ngrok link in the test bed app Viro media
+5. Begin
 ```
 
 ## Requirements
