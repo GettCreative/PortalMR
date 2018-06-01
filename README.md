@@ -13,7 +13,6 @@
 1. [Requirements](#requirements)
     1. [Installing Dependencies](#installing-dependencies)
 1. [Team](#team)
-1. [Contributing](#contributing)
 
 ## Installing Dependencies
 run npm install or yarn install in the root of this directory.
