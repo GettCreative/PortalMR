@@ -21,12 +21,14 @@ export default class VR extends Component {
   render() {
     return (
       <ViroScene>
-        <Viro360Video source={{uri: 'https://salsabeelvideos.s3.us-west-2.amazonaws.com/dino+%281%29.mp4'}} />
+        <Viro360Video source={require('../../VR_Videos/dino.mp4')} />
       </ViroScene>
     );
   }
 
 }
+
+// {uri: 'https://salsabeelvideos.s3.us-west-2.amazonaws.com/dino+%281%29.mp4'} - Amazon Server Terminated
 
 // var styles = StyleSheet.create({
 //   helloWorldTextStyle: {
