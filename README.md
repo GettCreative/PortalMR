@@ -21,7 +21,7 @@
 ## How to start the app
 ```sh
 NOTE: you will need to install the test bed app
--click here(https://play.google.com/store/apps/details?id=com.viromedia.viromedia) to install
+-click [here](https://play.google.com/store/apps/details?id=com.viromedia.viromedia) to install
 ```
 ```sh
 npm install
