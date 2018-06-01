@@ -35,9 +35,4 @@ npm install
 
 ### Roadmap
 
-View the project roadmap [here](https://waffle.io/Handy-neighbors/Handy-neighbors)
-
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+View the project roadmap [here](https://waffle.io/GettCreative/Portal)
