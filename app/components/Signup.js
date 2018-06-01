@@ -36,7 +36,7 @@ export default class Signup extends React.Component {
   register(){
     var that = this
   if(this.state.email.length && this.state.password.length && this.state.name && this.state.username!==0){
-    fetch('http://192.168.0.55:3000/signup', { //Please use your IP Address
+    fetch('http://portal-mr.herokuapp.com/signup', { //Please use your IP Address
 
       method: 'POST',
       headers: {

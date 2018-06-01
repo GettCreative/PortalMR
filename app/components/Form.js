@@ -21,7 +21,7 @@ export default class SignUp extends React.Component {
   login(){
     var that = this
     if(this.state.email.length && this.state.password.length !==0){
-    fetch('http://192.168.0.55:3000/login', { //Please use your IP Address
+    fetch('http://portal-mr.herokuapp.com/login', { //Please use your IP Address
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -32,7 +32,6 @@ export default class SignUp extends React.Component {
         email:that.state.email
       }),
     }).then((responsedata) => {
-      alert('Iam here ')
         if(responsedata.status === 200){
 
 
