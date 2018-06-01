@@ -18,7 +18,7 @@
 run npm install or yarn install in the root of this repository.
 ## How to start the app
 
-NOTE: you will need to install the test bed app
+NOTE: you will need to install the test bed app Viro media
 -Click [here](https://play.google.com/store/apps/details?id=com.viromedia.viromedia) to install
 
 ```sh
