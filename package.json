@@ -23,8 +23,9 @@
     "react-native-elements": "^0.19.1",
     "react-native-material-textinput": "^1.1.0",
     "react-native-router-flux": "^4.0.0-beta.26",
+    "react-native-snap-carousel": "^3.7.0",
     "react-native-vector-icons": "^4.6.0",
-    "react-viro": "2.7.0"
+    "react-viro": "2.7.3"
   },
   "devDependencies": {
     "babel-jest": "22.4.3",
@@ -40,4 +41,3 @@
     "preset": "react-native"
   }
 }
-

@@ -227,6 +227,7 @@ export default class Gallery extends Component {
                                     by adulthood after some bones get fused together.
                                   </Text>
                                   <Button
+                                    onPress = {this.arskeleton}
                                     icon={<Icon name='code' color='#ffffff' />}
                                     backgroundColor='#03A9F4'
                                     buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
@@ -242,6 +243,7 @@ export default class Gallery extends Component {
                                       title='Learn In Virtual Reality' />
 
                                       <Text></Text>
+
 
                                       <Button
                                         onPress = {() => Linking.openURL('https://en.wikipedia.org/wiki/Human_skeleton')}

@@ -16,6 +16,7 @@ import {
   ViroPortalScene,
   Viro3DObject,
   ViroARPlaneSelector,
+  ViroARPlane
 } from 'react-viro';
 
 export default class HelloWorldSceneAR extends Component {
@@ -34,7 +35,7 @@ export default class HelloWorldSceneAR extends Component {
   render() {
     return (
     <ViroARScene>
-      <ViroARPlaneSelector />
+      <ViroARPlane minHeight={1.5} minWidth={.5} alignment={"Horizontal"}>
         <ViroAmbientLight color="#ffffff" intensity={200}/>
           <ViroPortalScene passable={true} dragType="FixedToWorld" >
             <ViroPortal position={[0, 0, -1]} scale={[0.1, 0.1, 0.1]}>
@@ -47,6 +48,7 @@ export default class HelloWorldSceneAR extends Component {
 
             </ViroPortal>
               </ViroPortalScene>
+            </ViroARPlane>
             </ViroARScene>
     );
   }
