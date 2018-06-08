@@ -22,6 +22,11 @@ import {
   Header
 } from 'react-native-elements';
 
+
+import Carousel from 'react-native-snap-carousel';
+
+
+
 import {Actions} from 'react-native-router-flux';
 
 export default class Gallery extends Component {
