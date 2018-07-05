@@ -1,6 +1,4 @@
 import React from 'react'
-
-
 import {
   AppRegistry,
   StyleSheet,
@@ -13,8 +11,8 @@ export default class ImageElement extends React.Component {
   render(){
     return (
       <Image
-      source = {this.props.imgsource}
-      style={styles.image}>
+        source = {this.props.imgsource}
+        style={styles.image}>
       </Image>
     )
   }

@@ -6,12 +6,9 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-
 import Logo from '../components/Logo.js'
 import Form from '../components/Form.js'
 import {Actions} from 'react-native-router-flux';
-
-
 
 export default class Login extends React.Component {
 

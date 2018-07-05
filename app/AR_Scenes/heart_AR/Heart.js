@@ -33,24 +33,24 @@ export default class HelloWorldSceneAR extends Component {
 
   render() {
     return (
-    <ViroARScene>
-      <ViroARPlaneSelector />
+      <ViroARScene>
+        <ViroARPlaneSelector />
         <ViroAmbientLight color="#ffffff" intensity={200}/>
-          <ViroPortalScene passable={true} dragType="FixedDistance" >
-            <ViroPortal position={[0, 0, -1]} scale={[0.1, 0.1, 0.1]}>
+        <ViroPortalScene passable={true} dragType="FixedDistance" >
+          <ViroPortal position={[0, 0, -1]} scale={[0.1, 0.1, 0.1]}>
 
-              <Viro3DObject source={require('../../AR_objects/HeartFinal/heart.obj')}
-                resources={[require('../../AR_objects/HeartFinal/heartAna.jpg'),
-                            require('../../AR_objects/HeartFinal/CorazonJamon2.jpg'),
-                          require('../../AR_objects/HeartFinal/Corazon_b02.jpg'),
-                        require('../../AR_objects/HeartFinal/Auriculas_b.jpg'),
-                      require('../../AR_objects/HeartFinal/Auricula_izq.jpg'),
-                    require('../../AR_objects/HeartFinal/Auricula_der.jpg')]}
-                    type="OBJ"/>
+            <Viro3DObject source={require('../../AR_objects/HeartFinal/heart.obj')}
+            resources={[require('../../AR_objects/HeartFinal/heartAna.jpg'),
+            require('../../AR_objects/HeartFinal/CorazonJamon2.jpg'),
+            require('../../AR_objects/HeartFinal/Corazon_b02.jpg'),
+            require('../../AR_objects/HeartFinal/Auriculas_b.jpg'),
+            require('../../AR_objects/HeartFinal/Auricula_izq.jpg'),
+            require('../../AR_objects/HeartFinal/Auricula_der.jpg')]}
+            type="OBJ"/>
 
-            </ViroPortal>
-              </ViroPortalScene>
-            </ViroARScene>
+          </ViroPortal>
+        </ViroPortalScene>
+      </ViroARScene>
     );
   }
 

@@ -33,21 +33,21 @@ export default class HelloWorldSceneAR extends Component {
 
   render() {
     return (
-    <ViroARScene>
-      <ViroARPlaneSelector />
+      <ViroARScene>
+        <ViroARPlaneSelector />
         <ViroAmbientLight color="#ffffff" intensity={200}/>
-          <ViroPortalScene passable={true} dragType="FixedToWorld" >
-            <ViroPortal position={[0, 0, -1]} scale={[0.1, 0.1, 0.1]}>
+        <ViroPortalScene passable={true} dragType="FixedToWorld" >
+          <ViroPortal position={[0, 0, -1]} scale={[0.1, 0.1, 0.1]}>
 
-              <Viro3DObject source={require('../../AR_objects/Shark/Shark.obj')}
-                resources={[require('../../AR_objects/Shark/greatwhiteanatomy.jpg'),
-                            require('../../AR_objects/Shark/SharlAnatomy3.jpg'),
-                            require('../../AR_objects/Shark/GreatWhiteDiffuse.png')]}
-                    type="OBJ"/>
+            <Viro3DObject source={require('../../AR_objects/Shark/Shark.obj')}
+            resources={[require('../../AR_objects/Shark/greatwhiteanatomy.jpg'),
+            require('../../AR_objects/Shark/SharlAnatomy3.jpg'),
+            require('../../AR_objects/Shark/GreatWhiteDiffuse.png')]}
+            type="OBJ"/>
 
-            </ViroPortal>
-              </ViroPortalScene>
-            </ViroARScene>
+          </ViroPortal>
+        </ViroPortalScene>
+      </ViroARScene>
     );
   }
 

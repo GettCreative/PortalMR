@@ -3,7 +3,6 @@ import {AppRegistry, Text, View, StyleSheet, PixelRatio, TouchableHighlight} fro
 import {ViroVRSceneNavigator, ViroARSceneNavigator} from 'react-viro';
 import HelloWorldSceneAR from './Planets.js'
 
-
 var InitialARScene = HelloWorldSceneAR
 var sharedProps = {
 	apiKey:"C56CA371-C465-48F7-A0E4-EC7B0F146BCC"
@@ -15,16 +14,16 @@ export default class Planet_AR extends Component{
 		super()
 		this.state = {
 			sharedProps:sharedProps
+		}
 	}
-}
 	render(){
-	return this.getARscene()
+		return this.getARscene()
 	}
 
 	getARscene(){
 		return (
-		<ViroARSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: InitialARScene}} />
+			<ViroARSceneNavigator {...this.state.sharedProps}
+				initialScene={{scene: InitialARScene}} />
 			)
+		}
 	}
-}

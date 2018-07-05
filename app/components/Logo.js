@@ -15,7 +15,7 @@ export default class Logo extends React.Component {
           source = {require('../images/Logo.gif')} />
 
           <Text style = {styles.logoText}>PORTAL</Text>
-          
+
         </View>
       )
     }

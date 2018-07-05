@@ -33,18 +33,18 @@ export default class HelloWorldSceneAR extends Component {
 
   render() {
     return (
-    <ViroARScene>
-      <ViroARPlaneSelector />
+      <ViroARScene>
+        <ViroARPlaneSelector />
         <ViroAmbientLight color="#ffffff" intensity={200}/>
-          <ViroPortalScene passable={true} dragType="FixedDistance" >
-            <ViroPortal position={[0, 0, -1]} scale={[0.1, 0.1, 0.1]}>
+        <ViroPortalScene passable={true} dragType="FixedDistance" >
+          <ViroPortal position={[0, 0, -1]} scale={[0.1, 0.1, 0.1]}>
 
-              <Viro3DObject source={require('../../AR_objects/skeleton/Skeleton.obj')}
-                    type="OBJ"/>
+            <Viro3DObject source={require('../../AR_objects/skeleton/Skeleton.obj')}
+            type="OBJ"/>
 
-            </ViroPortal>
-              </ViroPortalScene>
-            </ViroARScene>
+          </ViroPortal>
+        </ViroPortalScene>
+      </ViroARScene>
     );
   }
 

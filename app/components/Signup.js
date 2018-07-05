@@ -8,12 +8,9 @@ import {
 
 } from 'react-native';
 
-
 import Logo from '../components/Logo.js'
 // import Form from '../components/Form.js'
 import {Actions} from 'react-native-router-flux';
-
-
 
 export default class Signup extends React.Component {
   constructor(){
@@ -35,28 +32,28 @@ export default class Signup extends React.Component {
   }
   register(){
     var that = this
-  if(this.state.email.length && this.state.password.length && this.state.name && this.state.username!==0){
-    fetch('http://portal-mr.herokuapp.com/signup', { //Please use your IP Address
+    if(this.state.email.length && this.state.password.length && this.state.name && this.state.username!==0){
+      fetch('http://portal-mr.herokuapp.com/signup', { //Please use your IP Address
 
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        password:that.state.password,
-        username:that.state.username,
-        name:that.state.name,
-        email:that.state.email
-      }),
-    }).then((responsedata) => {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          password:that.state.password,
+          username:that.state.username,
+          name:that.state.name,
+          email:that.state.email
+        }),
+      }).then((responsedata) => {
         if(responsedata.status === 200){
           Actions.gal()
         }else{
           alert("This email is already taken.!")
         }
-    })
-  }else{alert("plz fill all info")}
+      })
+    }else{alert("plz fill all info")}
   }
   render() {
     return (
