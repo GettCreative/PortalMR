@@ -43,31 +43,31 @@ export default class Profile extends React.Component {
 
     let images = this.state.images.map((val,key) => {
       return <TouchableWithoutFeedback key = {key}
-      onPress = {() => {  this.setModalVisible(true, key) }}>
-      <View style = {styles.imagewrap}>
-      <ImageElement imgsource = {val}></ImageElement>
-      </View>
+        onPress = {() => {  this.setModalVisible(true, key) }}>
+        <View style = {styles.imagewrap}>
+          <ImageElement imgsource = {val}></ImageElement>
+        </View>
       </TouchableWithoutFeedback>
     })
 
     return (
 
       <View style = {styles.container}>
-      <Modal style = {styles.modal}
-      animationType = {'fade'}
-      transparent = {true}
-      visible={this.state.modalVisible}
-      onRequestClose = {() => {}}>
+        <Modal style = {styles.modal}
+          animationType = {'fade'}
+          transparent = {true}
+          visible={this.state.modalVisible}
+          onRequestClose = {() => {}}>
 
-      <View style = {styles.modal}>
-        <Text style = {styles.text}
-        onPress={() => {this.setModalVisible(false)}}>Close
-        </Text>
-        <ImageElement imgsource = {this.state.modalImage}></ImageElement>
-      </View>
+          <View style = {styles.modal}>
+            <Text style = {styles.text}
+              onPress={() => {this.setModalVisible(false)}}>Close
+            </Text>
+            <ImageElement imgsource = {this.state.modalImage}></ImageElement>
+          </View>
 
-      </Modal>
-      {images}
+        </Modal>
+        {images}
       </View>
 
     )

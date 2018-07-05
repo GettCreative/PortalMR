@@ -17,7 +17,7 @@ export default class VR extends Component {
 
     this.state = {} // Set initial state here
   }
-
+  
   render() {
     return (
       <ViroScene>

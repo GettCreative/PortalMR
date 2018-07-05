@@ -6,16 +6,13 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-
 import Logo from '../components/Logo.js'
 import Form from '../components/Form.js'
 import {Actions} from 'react-native-router-flux';
 
-
-
 export default class Login extends React.Component {
 
-
+  
   signup(){
     Actions.signup()
   }
@@ -24,14 +21,14 @@ export default class Login extends React.Component {
 
 
       <View style = {styles.container}>
-      <Logo />
-      <Form type="Login"/>
-      <View style = {styles.signupTextContent}>
-        <Text style={styles.signupTextColor}> Dont Have an Account Yet ? </Text>
-        <TouchableOpacity onPress={this.signup}>
-        <Text style = {styles.signupButton}>Sign Up</Text>
-        </TouchableOpacity>
-      </View>
+        <Logo />
+        <Form type="Login"/>
+        <View style = {styles.signupTextContent}>
+          <Text style={styles.signupTextColor}> Dont Have an Account Yet ? </Text>
+          <TouchableOpacity onPress={this.signup}>
+            <Text style = {styles.signupButton}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
 
       </View>
 

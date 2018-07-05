@@ -265,33 +265,33 @@ export default class Gallery extends Component {
                                       <Text></Text>
 
 
-                                        <Button
-                                          onPress={this.logout}
-                                          icon={<Icon name='code' color='#ffffff' />}
-                                          backgroundColor='#E91E63'
-                                          buttonStyle={{borderRadius: 50, marginLeft: 50, marginRight: 50, marginBottom: 0}}
-                                          title='Log Out' />
+                                      <Button
+                                        onPress={this.logout}
+                                        icon={<Icon name='code' color='#ffffff' />}
+                                        backgroundColor='#E91E63'
+                                        buttonStyle={{borderRadius: 50, marginLeft: 50, marginRight: 50, marginBottom: 0}}
+                                        title='Log Out' />
 
-                                      <Text></Text>
-                                      <Text></Text>
-
-
+                                        <Text></Text>
+                                        <Text></Text>
 
 
-                                    </ScrollView>
-                                  );
+
+
+                                      </ScrollView>
+                                    );
+                                  }
                                 }
-                              }
 
-                              const styles = StyleSheet.create({
-                                container: {
-                                  flex: 1,
-                                  backgroundColor: 'black',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                },
-                                button: {
-                                  backgroundColor: '#859a9b',
-                                  padding: 10
-                                },
-                              });
+                                const styles = StyleSheet.create({
+                                  container: {
+                                    flex: 1,
+                                    backgroundColor: 'black',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                  },
+                                  button: {
+                                    backgroundColor: '#859a9b',
+                                    padding: 10
+                                  },
+                                });

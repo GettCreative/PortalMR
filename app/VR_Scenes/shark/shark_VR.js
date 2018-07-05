@@ -14,7 +14,7 @@ export default class VR extends Component {
 
   constructor() {
     super();
-
+    
     this.state = {} // Set initial state here
   }
 

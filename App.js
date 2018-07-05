@@ -10,14 +10,11 @@ import Routes from './app/Routes'
 import Gallery from './app/components/Gallery'
 //import Test from './app/components/SignInTest'
 
-
-
-
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      <Routes />
+        <Routes />
       </View>
     );
   }

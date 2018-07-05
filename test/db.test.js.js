@@ -3,8 +3,8 @@ var mongoose = require("mongoose");
 var User = require("../database-mongo/index.js");
 //to run the mocha test type:   ./node_modules/mocha/bin/mocha ./test/db.test.js
 //because npm test it will run the jest test.
- 
- 
+
+
 describe("User Model", function () {
 
   it("should be a Mongoose model", function () {
@@ -50,5 +50,5 @@ describe("User Model", function () {
   it("should have a `username` property that is a string", function () {
     expect(User.schema.paths.username.options.type.name).to.equal("String");
   });
-  
+
 });

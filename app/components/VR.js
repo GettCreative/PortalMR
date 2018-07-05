@@ -34,8 +34,6 @@ export default class VR extends Component {
 //     fontSize: 60,
 //     color: '#ffffff',
 //     textAlignVertical: 'center',
-//     textAlign: 'center',  
+//     textAlign: 'center',
 //   },
 // });
-
-

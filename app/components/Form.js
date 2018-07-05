@@ -21,17 +21,17 @@ export default class SignUp extends React.Component {
   login(){
     var that = this
     if(this.state.email.length && this.state.password.length !==0){
-    fetch('http://portal-mr.herokuapp.com/login', { //Please use your IP Address
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        password:that.state.password,
-        email:that.state.email
-      }),
-    }).then((responsedata) => {
+      fetch('http://portal-mr.herokuapp.com/login', { //Please use your IP Address
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          password:that.state.password,
+          email:that.state.email
+        }),
+      }).then((responsedata) => {
         if(responsedata.status === 200){
 
 
@@ -41,10 +41,10 @@ export default class SignUp extends React.Component {
         }else{
           alert("Username or Password is incorrect!")
         }
-    })
+      })
+    }
+    else{alert("Please fill all your information!")}
   }
-  else{alert("Please fill all your information!")}
-}
 
 
   render (){
