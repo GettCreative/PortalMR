@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "aws-sdk": "^2.248.1",
+    "aws-sdk": "^2.814.0",
     "bcrypt": "^2.0.1",
     "busboy": "^0.2.14",
     "busboy-body-parser": "^0.3.2",
