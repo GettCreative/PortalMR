@@ -6,7 +6,7 @@
 
   - __Product Owner__: Salsabeel
   - __Scrum Master__: Nader_Nasr
-  - __Development Team Members__: Nooreddein_Yousef, Mohammad_Al_Rifai
+  - __Development Team Members__: Noor Joseph, Mohammad_Al_Rifai
 
 ## Table of Contents
 
