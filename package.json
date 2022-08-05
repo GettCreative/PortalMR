@@ -16,7 +16,7 @@
     "connect-busboy": "0.0.2",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
-    "mongoose": "^5.1.2",
+    "mongoose": "^5.7.5",
     "ngrok": "^3.0.1",
     "react": "16.3.1",
     "react-native": "^0.55.4",
